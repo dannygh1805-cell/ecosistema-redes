@@ -10,10 +10,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'rt-navy': '#00040A',
-                        'rt-blue': '#001D3D',
+                        'rt-navy': '#0B1221',
+                        'rt-blue': '#112240',
                         'rt-cyan': '#00F5FF',
-                        'rt-glass': 'rgba(255, 255, 255, 0.02)',
+                        'rt-glass': 'rgba(255, 255, 255, 0.05)',
                     },
                     fontFamily: {
                         'outfit': ['Outfit', 'sans-serif'],
@@ -29,26 +29,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <style>
-        body { background-color: #00040A; color: #F8F9FA; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        body { background: linear-gradient(160deg, #0B1221 0%, #0D1B33 50%, #0B1221 100%); background-attachment: fixed; color: #E2E8F0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         
         /* Modern Glass Header */
-        .glass-header { background: rgba(0, 4, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .nav-link { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #A0AEC0; transition: color 0.3s; }
+        .glass-header { background: rgba(11, 18, 33, 0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0, 245, 255, 0.08); }
+        .nav-link { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; transition: color 0.3s; }
         .nav-link:hover, .nav-link.active { color: #00F5FF; }
 
         /* Typography */
         .hero-title { font-family: 'Outfit', sans-serif; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
         .section-title { font-family: 'Outfit', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
         
-        /* Cards & Panels */
-        .bento-card { background: var(--rt-glass); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2rem; overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); transform-style: preserve-3d;}
-        
+        /* Cards & Panels — elevated glass with blue tint */
+        .bento-card { background: rgba(17, 34, 64, 0.60); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(0, 245, 255, 0.10); border-radius: 2rem; overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); transform-style: preserve-3d; box-shadow: 0 4px 30px rgba(0,0,0,0.25); }
+        .bento-card:hover { border-color: rgba(0, 245, 255, 0.25); box-shadow: 0 8px 40px rgba(0, 245, 255, 0.08); }
+
         /* Disable hover transform if vanilla-tilt handles it */
-        .no-hover-transform:hover { transform: none; box-shadow: none; border-color: rgba(255, 255, 255, 0.05); }
+        .no-hover-transform:hover { transform: none; }
         
         /* Interactive Tags */
         .stat-number { background: linear-gradient(to bottom, #FFFFFF, #00F5FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
+        /* Sections - subtle blue gradient alternation */
+        .section-alt { background: rgba(13, 27, 51, 0.60); }
+
         /* Assistant */
         .assistant-panel { backdrop-filter: blur(30px); }
 
@@ -76,6 +80,12 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(calc(-100% - 3rem)); }
         }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0B1221; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,245,255,0.25); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,245,255,0.5); }
     </style>
 </head>
 <body class="selection:bg-rt-cyan selection:text-rt-navy">
@@ -103,7 +113,7 @@
     </nav>
 
             <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-[#00040A]/98 backdrop-blur-2xl z-[150] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
+    <div id="mobile-menu" class="fixed inset-0 bg-[#0B1221]/97 backdrop-blur-2xl z-[150] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
         <button class="absolute top-8 right-8 text-white text-4xl" onclick="toggleMobileMenu()">
             <i class="fa-solid fa-xmark"></i>
         </button>
@@ -127,7 +137,7 @@
             <video class="w-full h-full object-cover opacity-40 scale-105" autoplay loop muted playsinline id="hero-video">
                 <source src="MATERIAL PROMOCION/VIDEOS/REDES Y TELECOMUNICACIONES (1).mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#00040A]/50 to-[#00040A]"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B1221]/50 to-[#0B1221]"></div>
         </div>
         
         <div class="container mx-auto px-6 lg:px-12 relative z-10 text-center mt-20" id="hero-content">
@@ -208,7 +218,7 @@
             <div class="flex flex-col md:flex-row h-[700px] md:h-[500px] gap-4 w-full gs_reveal">
                 
                 <!-- Item 1: Laboratorio -->
-                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#00040A]" onclick="window.location.href='laboratorio.html'">
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#0B1221]" onclick="window.location.href='laboratorio.html'">
                     <img src="MATERIAL PROMOCION/IMAGENES DE LABORATORIO/ChatGPT Image 13 may 2026, 11_18_43 p.m.png" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-70 transition-opacity duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                     
@@ -232,7 +242,7 @@
                 </div>
 
                 <!-- Item 2: Docentes -->
-                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-gradient-to-br from-rt-blue/40 to-[#00040A]">
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-gradient-to-br from-rt-blue/40 to-[#0B1221]">
                     <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity duration-700 group-hover:scale-110"><i class="fa-solid fa-user-graduate text-[200px]"></i></div>
                     
                     <div class="absolute bottom-32 left-6 origin-bottom-left -rotate-90 hidden md:block opacity-100 group-hover:opacity-0 transition-opacity duration-300">
@@ -253,7 +263,7 @@
                 </div>
 
                 <!-- Item 3: Fibra -->
-                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#00040A]">
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#0B1221]">
                     <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_14_32 (2).png" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-70 transition-opacity duration-700 filter grayscale group-hover:grayscale-0">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                     
@@ -275,7 +285,7 @@
                 </div>
 
                 <!-- Item 4: Superior -->
-                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-gradient-to-tr from-[#00040A] to-rt-cyan/20">
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-gradient-to-tr from-[#0B1221] to-rt-cyan/20">
                     <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity duration-700 group-hover:scale-110"><i class="fa-solid fa-building-columns text-[200px] text-rt-cyan"></i></div>
                     
                     <div class="absolute bottom-32 left-6 origin-bottom-left -rotate-90 hidden md:block opacity-100 group-hover:opacity-0 transition-opacity duration-300">
@@ -302,7 +312,7 @@
                 </div>
 
                 <!-- Item 5: FCT -->
-                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#00040A]">
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#0B1221]">
                     <img src="MATERIAL PROMOCION/IMAGENES/REDES_4.png" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-60 transition-opacity duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                     
@@ -400,7 +410,7 @@
 
     <!-- PROFESSIONAL PROFILE (INTERACTIVE) -->
     <section class="py-32 border-t border-white/5 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-[#00040A] via-rt-blue/5 to-[#00040A] pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0B1221] via-rt-blue/5 to-[#0B1221] pointer-events-none"></div>
         <div class="container mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
             
             <!-- Dynamic Visual (Left) -->
@@ -408,7 +418,7 @@
                 <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_21_02.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
                 
                 <!-- Dynamic Overlay -->
-                <div class="absolute inset-0 bg-gradient-to-t from-[#00040A] via-[#00040A]/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0B1221] via-[#0B1221]/40 to-transparent"></div>
                 
                 <div class="absolute inset-0 p-8 flex flex-col justify-end" style="transform: translateZ(50px)">
                     <!-- Animated Target Reticle (Decorative) -->
@@ -416,7 +426,7 @@
                         <div class="w-8 h-8 border border-t-rt-cyan border-r-transparent border-b-rt-cyan border-l-transparent rounded-full"></div>
                     </div>
                     
-                    <div class="bg-black/60 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-[0_0_30px_rgba(0,245,255,0.1)] transition-all duration-500" id="profile-dynamic-box">
+                    <div class="bg-[#060d1a]/60 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-[0_0_30px_rgba(0,245,255,0.1)] transition-all duration-500" id="profile-dynamic-box">
                         <div class="flex items-center gap-3 mb-4">
                             <span class="flex h-3 w-3 relative">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rt-cyan opacity-75"></span>
@@ -455,7 +465,7 @@
                     </div>
                     
                     <!-- Skill 2 -->
-                    <div class="skill-card p-6 bg-white/5 rounded-3xl border border-white/5 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100"
+                    <div class="skill-card p-6 bg-white/5 rounded-3xl border border-white/10 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100"
                          onmouseenter="updateProfile(this)"
                          data-tag="Capa de Red"
                          data-quote="Administradores de sistemas capaces de sostener el 99.9% de disponibilidad (Uptime).">
@@ -469,7 +479,7 @@
                     </div>
                     
                     <!-- Skill 3 -->
-                    <div class="skill-card p-6 bg-white/5 rounded-3xl border border-white/5 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100"
+                    <div class="skill-card p-6 bg-white/5 rounded-3xl border border-white/10 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100"
                          onmouseenter="updateProfile(this)"
                          data-tag="Ciberseguridad"
                          data-quote="Guardianes digitales: Cifrado, cortafuegos perimetrales y políticas de mitigación de intrusiones.">
@@ -489,7 +499,7 @@
     <div class="fixed bottom-6 right-6 z-[500] flex items-end justify-end gs_reveal">
         
         <!-- Chat Interface -->
-        <div id="ai-chat-interface" class="bg-rt-navy/95 backdrop-blur-xl border border-rt-cyan/30 rounded-2xl rounded-br-none mb-4 mr-4 w-[320px] shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 pointer-events-none overflow-hidden relative">
+        <div id="ai-chat-interface" class="bg-[#0B1221]/95 backdrop-blur-xl border border-rt-cyan/30 rounded-2xl rounded-br-none mb-4 mr-4 w-[320px] shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 pointer-events-none overflow-hidden relative">
             
             <!-- Chat Header -->
             <div class="bg-gradient-to-r from-rt-blue to-rt-navy p-4 border-b border-white/10 flex justify-between items-center">
@@ -509,7 +519,7 @@
             </div>
 
             <!-- Chat Input -->
-            <div class="p-3 border-t border-white/10 bg-black/50 flex gap-2 items-center">
+            <div class="p-3 border-t border-white/10 bg-[#060d1a]/50 flex gap-2 items-center">
                 <input type="text" id="chat-input" placeholder="Pregúntame algo..." class="w-full bg-transparent border-none text-white text-sm focus:outline-none placeholder-gray-500 px-2 font-light" onkeypress="handleUserMessage(event)">
                 <button onclick="handleUserMessage()" class="text-rt-cyan hover:text-white transition-colors p-2 rounded-full hover:bg-white/5"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
@@ -519,7 +529,7 @@
         <!-- Mascot Trigger -->
         <div class="relative cursor-pointer group hover:-translate-y-2 transition-transform duration-300" onclick="toggleChat()">
             <div class="absolute inset-0 bg-rt-cyan blur-xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity"></div>
-            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-transparent shadow-[0_0_20px_rgba(0,245,255,0.4)] overflow-hidden relative z-10 bg-[#00040A] flex items-center justify-center transition-colors duration-300" id="mascot-container">
+            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-transparent shadow-[0_0_20px_rgba(0,245,255,0.4)] overflow-hidden relative z-10 bg-[#0B1221] flex items-center justify-center transition-colors duration-300" id="mascot-container">
                 <img src="MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png" class="w-full h-full object-cover object-top scale-[1.15] transition-all duration-300" alt="Asistente Virtual" id="mascot-img">
             </div>
         </div>
@@ -535,7 +545,7 @@
     </style>
 
     <!-- CINEMATIC VIDEO MODAL -->
-    <div id="video-modal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/95 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500">
+    <div id="video-modal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#060d1a]/95 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500">
         <button onclick="closeVideoModal()" class="absolute top-10 right-10 text-white hover:text-rt-cyan text-4xl z-10 transition-colors">
             <i class="fa-solid fa-xmark"></i>
         </button>
@@ -547,7 +557,7 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="py-12 border-t border-white/5 text-center bg-black">
+    <footer class="py-12 border-t border-white/5 text-center bg-[#060d1a]">
         <div class="flex justify-center gap-8 mb-6">
             <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" class="h-12">
             <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO_REDES_01-removebg-preview.png" class="h-12 filter brightness-0 invert opacity-40">
@@ -635,7 +645,7 @@
         function updateProfile(element) {
             // Reset all cards
             document.querySelectorAll('.skill-card').forEach(card => {
-                card.className = "skill-card p-6 bg-white/5 rounded-3xl border border-white/5 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100";
+                card.className = "skill-card p-6 bg-white/5 rounded-3xl border border-white/10 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100";
                 const iconWrap = card.querySelector('div.flex-shrink-0');
                 iconWrap.className = "mt-1 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 transition-colors";
                 const icon = iconWrap.querySelector('i');
