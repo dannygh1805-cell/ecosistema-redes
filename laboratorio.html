@@ -64,7 +64,23 @@
             <a href="recursos.html" class="nav-link">Recursos</a>
             <a href="recursos.html#contacto" class="ml-4 bg-white text-rt-navy px-6 py-2 rounded-full font-black text-xs hover:bg-rt-cyan transition-colors">Inscripciones 2026</a>
         </div>
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-white text-2xl hover:text-rt-cyan transition-colors" onclick="toggleMobileMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#00040A]/98 backdrop-blur-xl z-[150] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+        <button class="absolute top-6 right-6 text-white text-3xl hover:text-rt-cyan transition-colors" onclick="toggleMobileMenu()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <a href="index.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors" onclick="toggleMobileMenu()">Ecosistema</a>
+        <a href="malla.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors" onclick="toggleMobileMenu()">Malla Curricular</a>
+        <a href="laboratorio.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors" onclick="toggleMobileMenu()">Infraestructura</a>
+        <a href="recursos.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors" onclick="toggleMobileMenu()">Recursos</a>
+        <a href="recursos.html#contacto" class="mt-4 bg-rt-cyan text-rt-navy px-8 py-3 rounded-full font-black text-sm uppercase transition-transform hover:scale-105" onclick="toggleMobileMenu()">Inscripciones 2026</a>
+    </div>
 
     <!-- HERO INTRO -->
     <section class="container mx-auto px-6 lg:px-12 pt-10 text-center">

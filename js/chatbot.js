@@ -61,6 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 4. Lógica de Interfaz de Usuario
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if(menu) {
+        if(menu.classList.contains('opacity-0')) {
+            menu.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+        } else {
+            menu.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+        }
+    }
+}
+
 function toggleChat() {
     const chatInterface = document.getElementById('ai-chat-interface');
     const mascotContainer = document.getElementById('mascot-container');
