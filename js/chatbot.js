@@ -46,7 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         if (!isChatOpen && !autoMessageTriggered) {
             autoMessageTriggered = true;
-            toggleChat();
+            
+            // En escritorio abrimos el chat. En móvil solo hacemos rebotar la mascota para no ser intrusivos.
+            if (window.innerWidth >= 768) {
+                toggleChat();
+            } else {
+                const mascotContainer = document.getElementById('mascot-container');
+                if (mascotContainer) {
+                    mascotContainer.classList.add('animate-bounce');
+                    setTimeout(() => mascotContainer.classList.remove('animate-bounce'), 4000);
+                }
+            }
             
             // Context-aware auto message
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
