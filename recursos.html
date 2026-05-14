@@ -94,11 +94,11 @@
         <button class="absolute top-6 right-6 text-white text-3xl hover:text-rt-cyan transition-colors" onclick="toggleMobileMenu()">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <a href="index.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors">Ecosistema</a>
-        <a href="malla.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors">Malla Curricular</a>
-        <a href="laboratorio.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors">Infraestructura</a>
-        <a href="recursos.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors">Recursos</a>
-        <a href="#contacto" class="mt-4 bg-rt-cyan text-rt-navy px-8 py-3 rounded-full font-black text-sm uppercase transition-transform hover:scale-105" onclick="setTimeout(toggleMobileMenu, 200)">Inscripciones 2026</a>
+        <a href="index.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors" onclick="goToPage(event, this.getAttribute('href'))">Ecosistema</a>
+        <a href="malla.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors" onclick="goToPage(event, this.getAttribute('href'))">Malla Curricular</a>
+        <a href="laboratorio.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors" onclick="goToPage(event, this.getAttribute('href'))">Infraestructura</a>
+        <a href="recursos.html" class="text-2xl font-black text-white hover:text-rt-cyan tracking-widest uppercase transition-colors" onclick="goToPage(event, this.getAttribute('href'))">Recursos</a>
+        <a href="#contacto" class="mt-4 bg-rt-cyan text-rt-navy px-8 py-3 rounded-full font-black text-sm uppercase transition-transform hover:scale-105" onclick="goToPage(event, this.getAttribute('href'))">Inscripciones 2026</a>
     </div>
 
     <!-- CONTENT -->

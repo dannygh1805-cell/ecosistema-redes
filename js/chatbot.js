@@ -84,6 +84,14 @@ function toggleMobileMenu() {
     }
 }
 
+function goToPage(event, url) {
+    if(event) event.preventDefault();
+    toggleMobileMenu();
+    setTimeout(() => {
+        window.location.href = url;
+    }, 150);
+}
+
 function toggleChat() {
     const chatInterface = document.getElementById('ai-chat-interface');
     const mascotContainer = document.getElementById('mascot-container');
