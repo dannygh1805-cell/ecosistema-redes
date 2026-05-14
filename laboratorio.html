@@ -70,16 +70,23 @@
         </button>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-[#00040A]/98 backdrop-blur-xl z-[150] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
-        <button class="absolute top-6 right-6 text-white text-3xl hover:text-rt-cyan transition-colors" onclick="toggleMobileMenu()">
+        <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#00040A]/98 backdrop-blur-2xl z-[150] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
+        <button class="absolute top-8 right-8 text-white text-4xl" onclick="toggleMobileMenu()">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <a href="index.html" class="text-2xl font-black text-white active:text-rt-cyan md:hover:text-rt-cyan tracking-widest uppercase transition-all duration-300 inline-block py-3 px-6 rounded-2xl active:bg-white/10" onclick="goToPage(event, 'index.html')">Ecosistema</a>
-        <a href="malla.html" class="text-2xl font-black text-white active:text-rt-cyan md:hover:text-rt-cyan tracking-widest uppercase transition-all duration-300 inline-block py-3 px-6 rounded-2xl active:bg-white/10" onclick="goToPage(event, 'malla.html')">Malla Curricular</a>
-        <a href="laboratorio.html" class="text-2xl font-black text-white active:text-rt-cyan md:hover:text-rt-cyan tracking-widest uppercase transition-all duration-300 inline-block py-3 px-6 rounded-2xl active:bg-white/10" onclick="goToPage(event, 'laboratorio.html')">Infraestructura</a>
-        <a href="recursos.html" class="text-2xl font-black text-white active:text-rt-cyan md:hover:text-rt-cyan tracking-widest uppercase transition-all duration-300 inline-block py-3 px-6 rounded-2xl active:bg-white/10" onclick="goToPage(event, 'recursos.html')">Recursos</a>
-        <a href="recursos.html#contacto" class="mt-4 bg-rt-cyan text-rt-navy px-8 py-3 rounded-full font-black text-sm uppercase transition-transform active:scale-95 md:hover:scale-105 inline-block text-center shadow-[0_0_20px_rgba(0,245,255,0.4)]" onclick="goToPage(event, 'recursos.html#contacto')">Inscripciones 2026</a>
+        
+        <div class="flex flex-col items-center gap-6 w-full px-6">
+            <a href="index.html" class="w-full max-w-sm text-center text-lg lg:text-xl font-black text-white tracking-widest uppercase py-4 border border-white/10 rounded-2xl active:bg-rt-cyan active:text-rt-navy transition-colors">Ecosistema</a>
+            
+            <a href="malla.html" class="w-full max-w-sm text-center text-lg lg:text-xl font-black text-white tracking-widest uppercase py-4 border border-white/10 rounded-2xl active:bg-rt-cyan active:text-rt-navy transition-colors">Malla Curricular</a>
+            
+            <a href="laboratorio.html" class="w-full max-w-sm text-center text-lg lg:text-xl font-black text-white tracking-widest uppercase py-4 border border-white/10 rounded-2xl active:bg-rt-cyan active:text-rt-navy transition-colors">Infraestructura</a>
+            
+            <a href="recursos.html" class="w-full max-w-sm text-center text-lg lg:text-xl font-black text-white tracking-widest uppercase py-4 border border-white/10 rounded-2xl active:bg-rt-cyan active:text-rt-navy transition-colors">Recursos</a>
+            
+            <a href="recursos.html#contacto" class="w-full max-w-sm text-center text-lg lg:text-xl font-black text-rt-navy bg-rt-cyan tracking-widest uppercase py-4 rounded-2xl mt-4 shadow-[0_0_20px_rgba(0,245,255,0.4)]" onclick="setTimeout(toggleMobileMenu, 200)">Inscripciones 2026</a>
+        </div>
     </div>
 
     <!-- HERO INTRO -->
