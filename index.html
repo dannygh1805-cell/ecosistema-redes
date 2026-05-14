@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REDES Y TELECOMUNICACIONES | U.E. Guayaquil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rt-navy': '#00040A',
+                        'rt-blue': '#001D3D',
+                        'rt-cyan': '#00F5FF',
+                        'rt-glass': 'rgba(255, 255, 255, 0.02)',
+                    },
+                    fontFamily: {
+                        'outfit': ['Outfit', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <style>
+        body { background-color: #00040A; color: #F8F9FA; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        
+        /* Modern Glass Header */
+        .glass-header { background: rgba(0, 4, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .nav-link { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #A0AEC0; transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #00F5FF; }
+
+        /* Typography */
+        .hero-title { font-family: 'Outfit', sans-serif; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+        .section-title { font-family: 'Outfit', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+        
+        /* Cards & Panels */
+        .bento-card { background: var(--rt-glass); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2rem; overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); transform-style: preserve-3d;}
+        
+        /* Disable hover transform if vanilla-tilt handles it */
+        .no-hover-transform:hover { transform: none; box-shadow: none; border-color: rgba(255, 255, 255, 0.05); }
+        
+        /* Interactive Tags */
+        .stat-number { background: linear-gradient(to bottom, #FFFFFF, #00F5FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Assistant */
+        .assistant-panel { backdrop-filter: blur(30px); }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+            display: flex;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        .marquee-content {
+            display: flex;
+            gap: 3rem;
+            animation: scroll-marquee 25s linear infinite;
+            padding-left: 3rem;
+            flex-shrink: 0;
+        }
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+        @keyframes scroll-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100% - 3rem)); }
+        }
+    </style>
+</head>
+<body class="selection:bg-rt-cyan selection:text-rt-navy">
+
+    <!-- GLOBAL HEADER -->
+    <nav class="glass-header fixed top-0 w-full z-[100] px-6 lg:px-12 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" alt="Sello U.E. Guayaquil" class="h-10 lg:h-12">
+            <div class="hidden md:flex flex-col border-l border-white/10 pl-4">
+                <span class="font-outfit font-black text-sm lg:text-lg tracking-tighter leading-none text-white">REDES Y TELECOMUNICACIONES</span>
+                <span class="text-[8px] tracking-[0.3em] text-rt-cyan font-bold uppercase mt-1">Unidad Educativa Guayaquil</span>
+            </div>
+        </div>
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="nav-link active">Ecosistema</a>
+            <a href="malla.html" class="nav-link">Malla Curricular</a>
+            <a href="laboratorio.html" class="nav-link">Infraestructura</a>
+            <a href="recursos.html" class="nav-link">Recursos</a>
+            <a href="recursos.html#contacto" class="ml-4 bg-white text-rt-navy px-6 py-2 rounded-full font-black text-xs hover:bg-rt-cyan transition-colors">Inscripciones 2026</a>
+        </div>
+    </nav>
+
+    <!-- IMMERSIVE HERO -->
+    <header class="relative h-[95vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <video class="w-full h-full object-cover opacity-40 scale-105" autoplay loop muted playsinline id="hero-video">
+                <source src="MATERIAL PROMOCION/VIDEOS/REDES Y TELECOMUNICACIONES (1).mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#00040A]/50 to-[#00040A]"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-12 relative z-10 text-center mt-20" id="hero-content">
+            <div class="inline-flex items-center gap-2 bg-rt-cyan/10 border border-rt-cyan/20 px-4 py-1.5 rounded-full mb-6 cursor-default hover:bg-rt-cyan/20 transition-colors">
+                <div class="w-1.5 h-1.5 bg-rt-cyan rounded-full animate-pulse"></div>
+                <span class="text-[9px] font-black text-rt-cyan tracking-[0.2em] uppercase">El Futuro Conectado</span>
+            </div>
+            <h1 class="hero-title text-4xl md:text-7xl lg:text-[6rem] xl:text-[7.5rem] text-white mb-6 transform-gpu transition-transform duration-500 hover:scale-105 leading-tight">
+                REDES Y <br> <span class="text-rt-cyan opacity-90">TELECOMUNICACIONES</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                Transforma datos en soluciones. Bachillerato Técnico especializado en infraestructura, ciberseguridad y servicios cloud.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#estadisticas" class="bg-rt-cyan text-rt-navy px-10 py-4 rounded-full font-black text-sm uppercase tracking-wider hover:scale-105 transition-transform shadow-[0_0_30px_rgba(0,245,255,0.3)]">Descubrir el Potencial</a>
+                <button onclick="openVideoModal()" class="bg-white/5 border border-white/10 text-white px-10 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-colors flex items-center justify-center gap-3 cursor-pointer group">
+                    <i class="fa-solid fa-play text-rt-cyan group-hover:scale-125 transition-transform"></i> Reproducir Presentación
+                </button>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce cursor-pointer hover:text-rt-cyan hover:opacity-100 transition-all" onclick="document.getElementById('estadisticas').scrollIntoView({behavior: 'smooth'})">
+            <span class="text-[8px] font-bold tracking-[0.2em] uppercase">Scroll</span>
+            <i class="fa-solid fa-arrow-down text-rt-cyan"></i>
+        </div>
+    </header>
+
+    <!-- IMPACT STATISTICS (AMBATO) -->
+    <section id="estadisticas" class="py-32 relative">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-20 max-w-4xl mx-auto gs_reveal">
+                <h2 class="section-title text-4xl md:text-6xl mb-6">¿Por qué esta carrera es <span class="text-rt-cyan">estratégica para Ambato?</span></h2>
+                <p class="text-gray-400 text-lg">Datos fundamentados en el Estudio de Pertinencia Territorial y la Demanda Real del sector productivo local.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Stat 1 -->
+                <div class="bento-card no-hover-transform p-10 flex flex-col items-center text-center gs_reveal" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="w-20 h-20 bg-rt-cyan/10 rounded-full flex items-center justify-center mb-8" style="transform: translateZ(30px)">
+                        <i class="fa-solid fa-chart-line text-4xl text-rt-cyan"></i>
+                    </div>
+                    <h3 class="hero-title text-6xl stat-number mb-4" data-target="29.72" data-prefix="+" data-suffix="%" style="transform: translateZ(50px)">0%</h3>
+                    <p class="font-bold text-white text-lg mb-2" style="transform: translateZ(20px)">Crecimiento Anual</p>
+                    <p class="text-sm text-gray-500" style="transform: translateZ(10px)">Del sector de Tecnologías de la Información y Comunicación (TIC) en Ambato.</p>
+                </div>
+                <!-- Stat 2 -->
+                <div class="bento-card no-hover-transform p-10 flex flex-col items-center text-center gs_reveal" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="w-20 h-20 bg-rt-cyan/10 rounded-full flex items-center justify-center mb-8" style="transform: translateZ(30px)">
+                        <i class="fa-solid fa-laptop-code text-4xl text-rt-cyan"></i>
+                    </div>
+                    <h3 class="hero-title text-6xl stat-number mb-4" data-target="52.1" data-suffix="%" style="transform: translateZ(50px)">0%</h3>
+                    <p class="font-bold text-white text-lg mb-2" style="transform: translateZ(20px)">Preferencia Estudiantil</p>
+                    <p class="text-sm text-gray-500" style="transform: translateZ(10px)">De estudiantes prefieren una formación práctica en Bachillerato Técnico.</p>
+                </div>
+                <!-- Stat 3 -->
+                <div class="bento-card no-hover-transform p-10 flex flex-col items-center text-center gs_reveal" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="w-20 h-20 bg-rt-cyan/10 rounded-full flex items-center justify-center mb-8" style="transform: translateZ(30px)">
+                        <i class="fa-solid fa-briefcase text-4xl text-rt-cyan"></i>
+                    </div>
+                    <h3 class="hero-title text-6xl stat-number mb-4" data-target="81.1" data-suffix="%" style="transform: translateZ(50px)">0%</h3>
+                    <p class="font-bold text-white text-lg mb-2" style="transform: translateZ(20px)">Empleabilidad Segura</p>
+                    <p class="text-sm text-gray-500" style="transform: translateZ(10px)">Creen firmemente que un título de técnico mejora exponencialmente su inserción laboral.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- U.E. GUAYAQUIL VALUE PROPOSITION (INTERACTIVE ACCORDION) -->
+    <section id="oferta" class="py-20">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="mb-16 gs_reveal text-center">
+                <h2 class="section-title text-5xl mb-4">¿Qué ofrece la <span class="text-rt-cyan">U.E. Guayaquil?</span></h2>
+                <p class="text-gray-400 uppercase tracking-widest text-xs font-bold">Formación Práctica Garantizada</p>
+            </div>
+
+            <!-- Horizontal Accordion -->
+            <div class="flex flex-col md:flex-row h-[700px] md:h-[500px] gap-4 w-full gs_reveal">
+                
+                <!-- Item 1: Laboratorio -->
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#00040A]" onclick="window.location.href='laboratorio.html'">
+                    <img src="MATERIAL PROMOCION/IMAGENES DE LABORATORIO/ChatGPT Image 13 may 2026, 11_18_43 p.m.png" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-70 transition-opacity duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    
+                    <!-- Vertical Text (Collapsed) -->
+                    <div class="absolute bottom-32 left-6 origin-bottom-left -rotate-90 hidden md:block opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                        <span class="text-gray-400 font-bold uppercase tracking-widest whitespace-nowrap text-sm">Laboratorios Industriales</span>
+                    </div>
+
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="flex items-center gap-4">
+                            <div class="min-w-[48px] h-12 bg-rt-cyan text-rt-navy rounded-full flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,245,255,0.5)] group-hover:scale-110 transition-transform duration-500">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-black text-white whitespace-nowrap opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 md:translate-x-4 md:group-hover:translate-x-0">Laboratorios (Bloque J)</h3>
+                        </div>
+                        <div class="overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-300 text-sm mt-4 pl-0 md:pl-[64px] max-w-md">Proyectos de simulación de redes en tiempo real con racks industriales y servidores dedicados.</p>
+                            <span class="text-xs font-bold text-rt-cyan tracking-widest uppercase mt-4 inline-block pl-0 md:pl-[64px]">Explorar Tour Interactivo <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Docentes -->
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-gradient-to-br from-rt-blue/40 to-[#00040A]">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity duration-700 group-hover:scale-110"><i class="fa-solid fa-user-graduate text-[200px]"></i></div>
+                    
+                    <div class="absolute bottom-32 left-6 origin-bottom-left -rotate-90 hidden md:block opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                        <span class="text-gray-400 font-bold uppercase tracking-widest whitespace-nowrap text-sm">Docentes con Maestría</span>
+                    </div>
+
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="flex items-center gap-4">
+                            <div class="min-w-[48px] h-12 bg-white/10 backdrop-blur-md border border-white/20 text-rt-cyan rounded-full flex items-center justify-center text-xl group-hover:bg-rt-cyan group-hover:text-rt-navy transition-all duration-500">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-black text-white whitespace-nowrap opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 md:translate-x-4 md:group-hover:translate-x-0">Mentoría de Élite</h3>
+                        </div>
+                        <div class="overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-300 text-sm mt-4 pl-0 md:pl-[64px] max-w-md">Formación impartida por profesionales de cuarto nivel, garantizando metodologías alineadas a los estándares de la industria actual.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Fibra -->
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#00040A]">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_14_32 (2).png" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-70 transition-opacity duration-700 filter grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    
+                    <div class="absolute bottom-32 left-6 origin-bottom-left -rotate-90 hidden md:block opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                        <span class="text-gray-400 font-bold uppercase tracking-widest whitespace-nowrap text-sm">Prácticas Fibra Óptica</span>
+                    </div>
+
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="flex items-center gap-4">
+                            <div class="min-w-[48px] h-12 bg-white/10 backdrop-blur-md border border-white/20 text-rt-cyan rounded-full flex items-center justify-center text-xl group-hover:bg-rt-cyan group-hover:text-rt-navy transition-all duration-500">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-black text-white whitespace-nowrap opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 md:translate-x-4 md:group-hover:translate-x-0">Fibra Óptica Real</h3>
+                        </div>
+                        <div class="overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-300 text-sm mt-4 pl-0 md:pl-[64px] max-w-md">No solo simulamos. Trabajarás con empalmadoras y medidores de fibra óptica reales, preparándote para el mundo de los ISPs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: Superior -->
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-gradient-to-tr from-[#00040A] to-rt-cyan/20">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity duration-700 group-hover:scale-110"><i class="fa-solid fa-building-columns text-[200px] text-rt-cyan"></i></div>
+                    
+                    <div class="absolute bottom-32 left-6 origin-bottom-left -rotate-90 hidden md:block opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                        <span class="text-gray-400 font-bold uppercase tracking-widest whitespace-nowrap text-sm">Educación Superior</span>
+                    </div>
+
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="flex items-center gap-4">
+                            <div class="min-w-[48px] h-12 bg-white/10 backdrop-blur-md border border-white/20 text-rt-cyan rounded-full flex items-center justify-center text-xl group-hover:bg-rt-cyan group-hover:text-rt-navy transition-all duration-500">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-black text-white whitespace-nowrap opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 md:translate-x-4 md:group-hover:translate-x-0">Articulación Superior</h3>
+                        </div>
+                        <div class="overflow-hidden max-h-0 group-hover:max-h-48 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-300 text-sm mt-4 pl-0 md:pl-[64px] max-w-md">Tu título técnico avala la continuidad hacia Ingenierías y Tecnologías en Telecomunicaciones en las mejores instituciones del país.</p>
+                            <div class="flex flex-wrap gap-2 pl-0 md:pl-[64px] mt-4 max-w-md">
+                                <span class="bg-white/10 border border-white/20 px-3 py-1 rounded text-[10px] font-bold uppercase">UTA</span>
+                                <span class="bg-white/10 border border-white/20 px-3 py-1 rounded text-[10px] font-bold uppercase">ESPE</span>
+                                <span class="bg-white/10 border border-white/20 px-3 py-1 rounded text-[10px] font-bold uppercase">ESPOCH</span>
+                                <span class="bg-white/10 border border-white/20 px-3 py-1 rounded text-[10px] font-bold uppercase">Institutos Técnicos Superiores</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: FCT -->
+                <div class="group relative flex-[1] hover:flex-[6] transition-all duration-700 ease-in-out rounded-[2rem] overflow-hidden cursor-pointer border border-white/10 bg-[#00040A]">
+                    <img src="MATERIAL PROMOCION/IMAGENES/REDES_4.png" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-60 transition-opacity duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    
+                    <div class="absolute bottom-32 left-6 origin-bottom-left -rotate-90 hidden md:block opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                        <span class="text-gray-400 font-bold uppercase tracking-widest whitespace-nowrap text-sm">160 Horas Pre-Profesionales</span>
+                    </div>
+
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="flex items-center gap-4">
+                            <div class="min-w-[48px] h-12 bg-rt-cyan text-rt-navy rounded-full flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,245,255,0.5)] group-hover:scale-110 transition-transform duration-500">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-black text-white whitespace-nowrap opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 md:translate-x-4 md:group-hover:translate-x-0">Prácticas FCT</h3>
+                        </div>
+                        <div class="overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-300 text-sm mt-4 pl-0 md:pl-[64px] max-w-md">Inmersión total en entornos reales. 160 horas garantizadas de Formación en Centros de Trabajo con nuestros aliados empresariales.</p>
+                            <div class="flex gap-2 pl-0 md:pl-[64px] mt-4">
+                                <span class="bg-white/10 border border-white/20 px-3 py-1 rounded text-[10px] font-bold">Matutina</span>
+                                <span class="bg-white/10 border border-white/20 px-3 py-1 rounded text-[10px] font-bold">Vespertina</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STRATEGIC ALLIES NETWORK (MARQUEE) -->
+    <section class="py-24 bg-[#000814] relative border-y border-white/5 overflow-hidden">
+        <div class="absolute inset-0 opacity-[0.03]"><img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_18_23.png" class="w-full h-full object-cover"></div>
+        <div class="container mx-auto px-6 lg:px-12 relative z-10 text-center mb-16">
+            <h2 class="section-title text-4xl mb-4">RED DE <span class="text-rt-cyan">ALIADOS ESTRATÉGICOS</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Tus prácticas profesionales están respaldadas por gigantes de las telecomunicaciones.</p>
+        </div>
+        
+        <!-- Infinite Marquee -->
+        <div class="marquee-container relative z-10">
+            <div class="marquee-content">
+                <!-- Group 1 -->
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-satellite-dish text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-sm text-white">CNT EP</span>
+                </div>
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-cloud-arrow-up text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-sm text-white">Telconet / Netlife</span>
+                </div>
+                <div class="bento-card w-56 h-56 rounded-[2.5rem] flex flex-col items-center justify-center p-6 bg-rt-cyan/10 border-rt-cyan shadow-[0_0_30px_rgba(0,245,255,0.2)]">
+                    <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" class="h-20 mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                    <span class="font-black text-xs text-white">U.E. GUAYAQUIL</span>
+                </div>
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-book-open-reader text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-xs text-white text-center">Universidad Técnica de Ambato</span>
+                </div>
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-bolt text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-sm text-white">EEASA</span>
+                </div>
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-landmark text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-xs text-white text-center">GAD Municipal Ambato</span>
+                </div>
+            </div>
+            
+            <!-- Duplicated Group for Infinite Loop -->
+            <div class="marquee-content" aria-hidden="true">
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-satellite-dish text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-sm text-white">CNT EP</span>
+                </div>
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-cloud-arrow-up text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-sm text-white">Telconet / Netlife</span>
+                </div>
+                <div class="bento-card w-56 h-56 rounded-[2.5rem] flex flex-col items-center justify-center p-6 bg-rt-cyan/10 border-rt-cyan shadow-[0_0_30px_rgba(0,245,255,0.2)]">
+                    <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" class="h-20 mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                    <span class="font-black text-xs text-white">U.E. GUAYAQUIL</span>
+                </div>
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-book-open-reader text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-xs text-white text-center">Universidad Técnica de Ambato</span>
+                </div>
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-bolt text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-sm text-white">EEASA</span>
+                </div>
+                <div class="bento-card w-48 h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 bg-[#000A1A]">
+                    <i class="fa-solid fa-landmark text-4xl text-rt-cyan mb-3"></i>
+                    <span class="font-black text-xs text-white text-center">GAD Municipal Ambato</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL PROFILE (INTERACTIVE) -->
+    <section class="py-32 border-t border-white/5 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#00040A] via-rt-blue/5 to-[#00040A] pointer-events-none"></div>
+        <div class="container mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            
+            <!-- Dynamic Visual (Left) -->
+            <div class="relative rounded-[3rem] overflow-hidden border border-white/10 aspect-[4/5] gs_reveal group" data-tilt data-tilt-max="3" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_21_02.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                
+                <!-- Dynamic Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#00040A] via-[#00040A]/40 to-transparent"></div>
+                
+                <div class="absolute inset-0 p-8 flex flex-col justify-end" style="transform: translateZ(50px)">
+                    <!-- Animated Target Reticle (Decorative) -->
+                    <div class="absolute top-10 right-10 w-16 h-16 border border-rt-cyan/30 rounded-full flex items-center justify-center animate-[spin_10s_linear_infinite]">
+                        <div class="w-8 h-8 border border-t-rt-cyan border-r-transparent border-b-rt-cyan border-l-transparent rounded-full"></div>
+                    </div>
+                    
+                    <div class="bg-black/60 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-[0_0_30px_rgba(0,245,255,0.1)] transition-all duration-500" id="profile-dynamic-box">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="flex h-3 w-3 relative">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rt-cyan opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-rt-cyan"></span>
+                            </span>
+                            <span class="text-rt-cyan font-bold uppercase tracking-widest text-xs" id="profile-dynamic-tag">Capa Física</span>
+                        </div>
+                        <p class="font-outfit font-black text-2xl lg:text-3xl text-white italic leading-tight" id="profile-dynamic-quote">
+                            "Especialistas en cableado estructurado y fibra óptica bajo normativas internacionales."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Skills List (Right) -->
+            <div class="gs_reveal">
+                <div class="inline-flex items-center gap-2 bg-rt-cyan/10 border border-rt-cyan/20 px-4 py-1.5 rounded-full mb-6 cursor-default hover:bg-rt-cyan/20 transition-colors">
+                    <i class="fa-solid fa-user-astronaut text-rt-cyan text-xs"></i>
+                    <span class="text-[9px] font-black text-rt-cyan tracking-[0.2em] uppercase">El Profesional del Mañana</span>
+                </div>
+                <h2 class="section-title text-5xl mb-8">PERFIL DEL <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-rt-cyan to-white">EGRESADO</span></h2>
+                
+                <div class="space-y-4" id="skills-container">
+                    <!-- Skill 1 -->
+                    <div class="skill-card p-6 bg-rt-cyan/10 rounded-3xl border border-rt-cyan/50 flex gap-6 items-start cursor-pointer transition-all duration-300 transform scale-105" 
+                         onmouseenter="updateProfile(this)"
+                         data-tag="Capa Física"
+                         data-quote="Especialistas en cableado estructurado y fibra óptica bajo normativas internacionales.">
+                        <div class="mt-1 w-12 h-12 rounded-full bg-rt-cyan/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-network-wired text-xl text-rt-cyan drop-shadow-[0_0_10px_rgba(0,245,255,0.5)]"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-2 text-lg">Dominio de Infraestructura</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Instalación y configuración de redes LAN/WAN/WLAN, manejo de fibra óptica y cableado estructurado ANSI/TIA.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 2 -->
+                    <div class="skill-card p-6 bg-white/5 rounded-3xl border border-white/5 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100"
+                         onmouseenter="updateProfile(this)"
+                         data-tag="Capa de Red"
+                         data-quote="Administradores de sistemas capaces de sostener el 99.9% de disponibilidad (Uptime).">
+                        <div class="mt-1 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 transition-colors">
+                            <i class="fa-solid fa-server text-xl text-gray-400 transition-colors"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-2 text-lg">Gestión de Servicios y Servidores</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Administración de telefonía IP, servidores dedicados y protocolos TCP/IP para garantizar conectividad total.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 3 -->
+                    <div class="skill-card p-6 bg-white/5 rounded-3xl border border-white/5 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100"
+                         onmouseenter="updateProfile(this)"
+                         data-tag="Ciberseguridad"
+                         data-quote="Guardianes digitales: Cifrado, cortafuegos perimetrales y políticas de mitigación de intrusiones.">
+                        <div class="mt-1 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 transition-colors">
+                            <i class="fa-solid fa-shield-halved text-xl text-gray-400 transition-colors"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-2 text-lg">Ciberseguridad Aplicada</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Implementación de cortafuegos (Firewalls), análisis de vulnerabilidades y encriptación de datos empresariales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- FLOATING CHATBOT AI -->
+    <div class="fixed bottom-6 right-6 z-[500] flex items-end justify-end gs_reveal">
+        
+        <!-- Chat Interface -->
+        <div id="ai-chat-interface" class="bg-rt-navy/95 backdrop-blur-xl border border-rt-cyan/30 rounded-2xl rounded-br-none mb-4 mr-4 w-[320px] shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 pointer-events-none overflow-hidden relative">
+            
+            <!-- Chat Header -->
+            <div class="bg-gradient-to-r from-rt-blue to-rt-navy p-4 border-b border-white/10 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-rt-cyan rounded-full animate-ping"></div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white uppercase tracking-widest leading-none">Guía Vocacional</h4>
+                        <span class="text-[9px] text-rt-cyan font-bold">ONLINE</span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Chat History -->
+            <div id="chat-history" class="p-4 flex-grow overflow-y-auto flex flex-col gap-3 h-[300px] scroll-smooth custom-scrollbar">
+                <!-- Mensajes inyectados vía JS -->
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-3 border-t border-white/10 bg-black/50 flex gap-2 items-center">
+                <input type="text" id="chat-input" placeholder="Pregúntame algo..." class="w-full bg-transparent border-none text-white text-sm focus:outline-none placeholder-gray-500 px-2 font-light" onkeypress="handleUserMessage(event)">
+                <button onclick="handleUserMessage()" class="text-rt-cyan hover:text-white transition-colors p-2 rounded-full hover:bg-white/5"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            
+        </div>
+        
+        <!-- Mascot Trigger -->
+        <div class="relative cursor-pointer group hover:-translate-y-2 transition-transform duration-300" onclick="toggleChat()">
+            <div class="absolute inset-0 bg-rt-cyan blur-xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity"></div>
+            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-transparent shadow-[0_0_20px_rgba(0,245,255,0.4)] overflow-hidden relative z-10 bg-[#00040A] flex items-center justify-center transition-colors duration-300" id="mascot-container">
+                <img src="MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png" class="w-full h-full object-cover object-top scale-[1.15] transition-all duration-300" alt="Asistente Virtual" id="mascot-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- CHATBOT LOGIC -->
+    <script src="js/chatbot.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 245, 255, 0.2); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 245, 255, 0.5); }
+    </style>
+
+    <!-- CINEMATIC VIDEO MODAL -->
+    <div id="video-modal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/95 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500">
+        <button onclick="closeVideoModal()" class="absolute top-10 right-10 text-white hover:text-rt-cyan text-4xl z-10 transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="w-11/12 max-w-6xl aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(0,245,255,0.2)] transform scale-95 transition-transform duration-500" id="video-container">
+            <video id="presentation-video" class="w-full h-full object-cover" controls playsinline>
+                <source src="MATERIAL PROMOCION/VIDEOS/REDES Y TELECOMUNICACIONES (1).mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5 text-center bg-black">
+        <div class="flex justify-center gap-8 mb-6">
+            <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" class="h-12">
+            <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO_REDES_01-removebg-preview.png" class="h-12 filter brightness-0 invert opacity-40">
+        </div>
+        <p class="text-gray-600 font-bold tracking-[0.3em] text-[9px] uppercase">Unidad Educativa Guayaquil • Ecosistema Digital 2026</p>
+    </footer>
+
+    <script>
+        // Video Modal Logic
+        function openVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const container = document.getElementById('video-container');
+            const video = document.getElementById('presentation-video');
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            container.classList.remove('scale-95');
+            container.classList.add('scale-100');
+            video.play();
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const container = document.getElementById('video-container');
+            const video = document.getElementById('presentation-video');
+            
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            video.pause();
+        }
+
+        // --- GSAP ANIMATIONS ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Hero Parallax
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
+            const mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+            gsap.to('.hero-title', {
+                rotationY: mouseX,
+                rotationX: -mouseY,
+                transformPerspective: 1000,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+
+        // 2. Animated Counters
+        gsap.utils.toArray('.stat-number').forEach(function(elem) {
+            let target = parseFloat(elem.getAttribute('data-target'));
+            let suffix = elem.getAttribute('data-suffix');
+            let prefix = elem.getAttribute('data-prefix') || '';
+            let decimals = target % 1 !== 0 ? (target.toString().split('.')[1].length) : 0;
+            
+            let counter = { val: 0 };
+            ScrollTrigger.create({
+                trigger: elem,
+                start: "top 85%",
+                once: true,
+                onEnter: function() {
+                    gsap.to(counter, {
+                        val: target,
+                        duration: 2.5,
+                        ease: "power3.out",
+                        onUpdate: function() {
+                            elem.innerHTML = prefix + counter.val.toFixed(decimals) + suffix;
+                        }
+                    });
+                }
+            });
+        });
+
+        // 3. Scroll Reveal Elements
+        gsap.utils.toArray('.gs_reveal').forEach(function(elem) {
+            ScrollTrigger.create({
+                trigger: elem,
+                start: "top 85%",
+                onEnter: function() {
+                    gsap.fromTo(elem, {y: 50, opacity: 0}, {duration: 1, y: 0, opacity: 1, ease: "power3.out", overwrite: "auto"});
+                }
+            });
+        });
+
+        // 5. Interactive Profile Logic
+        function updateProfile(element) {
+            // Reset all cards
+            document.querySelectorAll('.skill-card').forEach(card => {
+                card.className = "skill-card p-6 bg-white/5 rounded-3xl border border-white/5 flex gap-6 items-start cursor-pointer transition-all duration-300 hover:bg-white/10 opacity-70 hover:opacity-100";
+                const iconWrap = card.querySelector('div.flex-shrink-0');
+                iconWrap.className = "mt-1 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 transition-colors";
+                const icon = iconWrap.querySelector('i');
+                icon.classList.remove('text-rt-cyan', 'drop-shadow-[0_0_10px_rgba(0,245,255,0.5)]');
+                icon.classList.add('text-gray-400');
+            });
+
+            // Activate hovered card
+            element.className = "skill-card p-6 bg-rt-cyan/10 rounded-3xl border border-rt-cyan/50 flex gap-6 items-start cursor-pointer transition-all duration-300 transform scale-105";
+            const activeIconWrap = element.querySelector('div.flex-shrink-0');
+            activeIconWrap.className = "mt-1 w-12 h-12 rounded-full bg-rt-cyan/20 flex items-center justify-center flex-shrink-0 transition-colors";
+            const activeIcon = activeIconWrap.querySelector('i');
+            activeIcon.classList.remove('text-gray-400');
+            activeIcon.classList.add('text-rt-cyan', 'drop-shadow-[0_0_10px_rgba(0,245,255,0.5)]');
+
+            // Update Dynamic Quote Box
+            const tag = element.getAttribute('data-tag');
+            const quote = element.getAttribute('data-quote');
+            const box = document.getElementById('profile-dynamic-box');
+            
+            // GSAP animate text change
+            gsap.to(['#profile-dynamic-tag', '#profile-dynamic-quote'], {
+                opacity: 0,
+                y: 5,
+                duration: 0.15,
+                onComplete: () => {
+                    document.getElementById('profile-dynamic-tag').innerText = tag;
+                    document.getElementById('profile-dynamic-quote').innerText = '"' + quote + '"';
+                    gsap.to(['#profile-dynamic-tag', '#profile-dynamic-quote'], {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                }
+            });
+            
+            // Subtle box pulse
+            gsap.fromTo(box, 
+                { borderColor: "rgba(0,245,255,0.5)", boxShadow: "0 0 40px rgba(0,245,255,0.2)" }, 
+                { borderColor: "rgba(255,255,255,0.1)", boxShadow: "0 0 30px rgba(0,245,255,0.1)", duration: 1 }
+            );
+        }
+    </script>
+</body>
+</html>

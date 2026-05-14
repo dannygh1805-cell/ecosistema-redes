@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT HUB | Centro de Recursos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rt-navy': '#00040A',
+                        'rt-blue': '#001D3D',
+                        'rt-cyan': '#00F5FF',
+                        'rt-glass': 'rgba(255, 255, 255, 0.02)',
+                    },
+                    fontFamily: {
+                        'outfit': ['Outfit', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <style>
+        body { background-color: #00040A; color: #F8F9FA; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass-header { background: rgba(0, 4, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .nav-link { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #A0AEC0; transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #00F5FF; }
+
+        .bento-card { background: var(--rt-glass); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2rem; transform-style: preserve-3d; }
+        
+        /* Interactive Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        
+        /* Copy Interaction styling */
+        .copy-target { cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .copy-target:hover { color: #00F5FF; }
+        .copy-target:active { transform: scale(0.95); }
+        .copy-icon { opacity: 0; transform: translateX(-10px); transition: all 0.3s; color: #00F5FF; font-size: 0.8rem; }
+        .copy-target:hover .copy-icon { opacity: 1; transform: translateX(0); }
+    </style>
+</head>
+<body class="selection:bg-rt-cyan selection:text-rt-navy pt-32 relative">
+
+    <!-- Toast Notification -->
+    <div id="copy-toast" class="toast bg-black/80 backdrop-blur-xl border border-rt-cyan/50 px-8 py-4 rounded-full flex items-center gap-4 shadow-[0_0_40px_rgba(0,245,255,0.3)]">
+        <div class="w-3 h-3 bg-rt-cyan rounded-full animate-ping"></div>
+        <span class="text-white font-bold text-sm tracking-widest uppercase"><i class="fa-solid fa-check text-rt-cyan mr-2"></i> Dato Copiado al Portapapeles</span>
+    </div>
+
+    <!-- GLOBAL HEADER -->
+    <nav class="glass-header fixed top-0 w-full z-[100] px-6 lg:px-12 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" alt="Sello U.E. Guayaquil" class="h-10 lg:h-12">
+            <div class="hidden md:flex flex-col border-l border-white/10 pl-4">
+                <span class="font-outfit font-black text-sm lg:text-lg tracking-tighter leading-none text-white">REDES Y TELECOMUNICACIONES</span>
+                <span class="text-[8px] tracking-[0.3em] text-rt-cyan font-bold uppercase mt-1">Unidad Educativa Guayaquil</span>
+            </div>
+        </div>
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="nav-link">Ecosistema</a>
+            <a href="malla.html" class="nav-link">Malla Curricular</a>
+            <a href="laboratorio.html" class="nav-link">Infraestructura</a>
+            <a href="recursos.html" class="nav-link active">Recursos</a>
+            <a href="#contacto" class="ml-4 bg-white text-rt-navy px-6 py-2 rounded-full font-black text-xs hover:bg-rt-cyan transition-colors">Inscripciones 2026</a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="container mx-auto px-6 lg:px-12 min-h-screen pb-20">
+        
+        <!-- HERO -->
+        <header class="mb-20 pt-10 text-center relative gs_reveal">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-rt-cyan/10 blur-[120px] rounded-full pointer-events-none"></div>
+            <div class="inline-flex items-center gap-2 bg-rt-cyan/10 border border-rt-cyan/20 px-4 py-1.5 rounded-full mb-6 relative z-10">
+                <i class="fa-solid fa-folder-open text-rt-cyan text-xs"></i>
+                <span class="text-[9px] font-black text-rt-cyan tracking-[0.2em] uppercase">Documentación & Contacto</span>
+            </div>
+            <h1 class="font-outfit text-5xl md:text-7xl lg:text-[6rem] font-black uppercase tracking-tighter relative z-10 leading-tight">
+                CENTRO DE <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-rt-cyan">RECURSOS</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl mt-6 max-w-2xl mx-auto font-light relative z-10">Accede a la documentación académica oficial y establece contacto directo y automatizado con la coordinación de la carrera.</p>
+        </header>
+
+        <!-- LIBRARY SECTION -->
+        <section class="mb-32 relative z-10">
+            <div class="flex items-center gap-4 mb-10 gs_reveal border-b border-white/10 pb-4">
+                <i class="fa-solid fa-book-bookmark text-2xl text-rt-cyan"></i>
+                <h2 class="text-2xl font-outfit font-black text-white uppercase tracking-widest">Biblioteca Oficial (FIP)</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Doc 1 -->
+                <a href="MATERIAL PROMOCION/DOCUMENTOS/curriculo-FIP-rt.pdf" target="_blank" class="bento-card p-0 relative h-64 group cursor-pointer block gs_reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.4">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#00040A] to-[#001020] z-0"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-between" style="transform: translateZ(40px)">
+                        <div class="w-14 h-14 bg-rt-cyan/10 rounded-full flex items-center justify-center border border-rt-cyan/30 group-hover:bg-rt-cyan group-hover:text-rt-navy transition-all duration-300">
+                            <i class="fa-solid fa-file-pdf text-2xl text-rt-cyan group-hover:text-rt-navy"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-white mb-1 uppercase">Currículo Oficial</h4>
+                            <p class="text-xs text-gray-400">Módulos y carga horaria FIP.</p>
+                        </div>
+                    </div>
+                    <!-- Hover Overlay Button -->
+                    <div class="absolute bottom-0 left-0 w-full h-16 bg-rt-cyan text-rt-navy flex items-center justify-center font-bold uppercase tracking-widest text-xs transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
+                        Descargar PDF <i class="fa-solid fa-download ml-2"></i>
+                    </div>
+                </a>
+
+                <!-- Doc 2 -->
+                <a href="MATERIAL PROMOCION/DOCUMENTOS/analisis-funcional-y-perfil-profesional-rt.pdf" target="_blank" class="bento-card p-0 relative h-64 group cursor-pointer block gs_reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.4">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#00040A] to-[#001020] z-0"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-between" style="transform: translateZ(40px)">
+                        <div class="w-14 h-14 bg-rt-cyan/10 rounded-full flex items-center justify-center border border-rt-cyan/30 group-hover:bg-rt-cyan group-hover:text-rt-navy transition-all duration-300">
+                            <i class="fa-solid fa-user-tie text-2xl text-rt-cyan group-hover:text-rt-navy"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-white mb-1 uppercase">Perfil Profesional</h4>
+                            <p class="text-xs text-gray-400">Análisis y campo ocupacional.</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-16 bg-rt-cyan text-rt-navy flex items-center justify-center font-bold uppercase tracking-widest text-xs transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
+                        Descargar PDF <i class="fa-solid fa-download ml-2"></i>
+                    </div>
+                </a>
+
+                <!-- Doc 3 -->
+                <a href="MATERIAL PROMOCION/DOCUMENTOS/caracterizacion-de-la-familia-rt (1).pdf" target="_blank" class="bento-card p-0 relative h-64 group cursor-pointer block gs_reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.4">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#00040A] to-[#001020] z-0"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-between" style="transform: translateZ(40px)">
+                        <div class="w-14 h-14 bg-rt-cyan/10 rounded-full flex items-center justify-center border border-rt-cyan/30 group-hover:bg-rt-cyan group-hover:text-rt-navy transition-all duration-300">
+                            <i class="fa-solid fa-sitemap text-2xl text-rt-cyan group-hover:text-rt-navy"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-white mb-1 uppercase leading-tight">Familia Profesional</h4>
+                            <p class="text-xs text-gray-400 mt-2">Caracterización tecnológica.</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-16 bg-rt-cyan text-rt-navy flex items-center justify-center font-bold uppercase tracking-widest text-xs transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
+                        Descargar PDF <i class="fa-solid fa-download ml-2"></i>
+                    </div>
+                </a>
+
+                <!-- Doc 4 -->
+                <a href="MATERIAL PROMOCION/DOCUMENTOS/The_Connected_Future (1).pdf" target="_blank" class="bento-card p-0 relative h-64 group cursor-pointer block border-rt-cyan/30 gs_reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.4">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#001020] to-[#002040] z-0"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-between" style="transform: translateZ(40px)">
+                        <div class="absolute top-4 right-4 bg-rt-cyan text-rt-navy text-[8px] font-black px-2 py-1 rounded uppercase tracking-widest">Recomendado</div>
+                        <div class="w-14 h-14 bg-rt-cyan/20 rounded-full flex items-center justify-center border border-rt-cyan/50 group-hover:bg-rt-cyan group-hover:text-rt-navy transition-all duration-300">
+                            <i class="fa-solid fa-rocket text-2xl text-rt-cyan group-hover:text-rt-navy"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-white mb-1 uppercase">Connected Future</h4>
+                            <p class="text-xs text-rt-cyan">Estadísticas y demanda real.</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-16 bg-rt-cyan text-rt-navy flex items-center justify-center font-bold uppercase tracking-widest text-xs transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
+                        Descargar PDF <i class="fa-solid fa-download ml-2"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- CONTACT CONSOLE SECTION -->
+        <section id="contacto" class="relative z-10 gs_reveal">
+            <div class="flex items-center gap-4 mb-10 border-b border-white/10 pb-4">
+                <i class="fa-solid fa-terminal text-2xl text-rt-cyan"></i>
+                <h2 class="text-2xl font-outfit font-black text-white uppercase tracking-widest">Terminal de Contacto</h2>
+            </div>
+
+            <div class="bento-card bg-gradient-to-br from-[#00040A] to-rt-cyan/5 border border-white/10 overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12">
+                    
+                    <!-- LEFT: Action Panel -->
+                    <div class="lg:col-span-7 p-12 relative flex flex-col justify-center border-r border-white/5">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-rt-cyan/10 blur-3xl rounded-full pointer-events-none"></div>
+                        
+                        <span class="bg-rt-cyan/20 text-rt-cyan border border-rt-cyan/30 px-3 py-1 rounded font-black text-[9px] uppercase tracking-widest mb-6 inline-block w-max">Proceso de Admisión 2026</span>
+                        <h2 class="font-outfit text-5xl md:text-6xl font-black mb-6 uppercase leading-none">INICIA TU <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-rt-cyan to-white">INSCRIPCIÓN</span></h2>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-10 max-w-md">Toca cualquiera de nuestros canales oficiales a continuación para copiar los datos directamente a tu portapapeles. Cupos estrictamente limitados.</p>
+                        
+                        <div class="space-y-4">
+                            <!-- Click to copy logic -->
+                            <div class="flex items-start gap-6 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-rt-cyan/30 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-rt-cyan/10 flex items-center justify-center flex-shrink-0 border border-rt-cyan/20">
+                                    <i class="fa-solid fa-phone text-rt-cyan text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-[10px] text-gray-500 uppercase tracking-widest mb-1">Contacto Telefónico Directo</p>
+                                    <p class="font-black text-white text-xl copy-target" onclick="copyData('032 408 970')">
+                                        032 408 970 <i class="fa-regular fa-copy copy-icon"></i>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-6 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-rt-cyan/30 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-rt-cyan/10 flex items-center justify-center flex-shrink-0 border border-rt-cyan/20">
+                                    <i class="fa-solid fa-envelope text-rt-cyan text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-[10px] text-gray-500 uppercase tracking-widest mb-1">Correo Electrónico Institucional</p>
+                                    <p class="font-black text-white text-xl copy-target" onclick="copyData('18h00087@gmail.com')">
+                                        18h00087@gmail.com <i class="fa-regular fa-copy copy-icon"></i>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-6 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-rt-cyan/30 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-rt-cyan/10 flex items-center justify-center flex-shrink-0 border border-rt-cyan/20">
+                                    <i class="fa-solid fa-fingerprint text-rt-cyan text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-[10px] text-gray-500 uppercase tracking-widest mb-1">Identificador Institucional AMIE</p>
+                                    <p class="font-black text-white text-xl tracking-widest copy-target" onclick="copyData('18H00087')">
+                                        18H00087 <i class="fa-regular fa-copy copy-icon"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Visual / Location Panel -->
+                    <div class="lg:col-span-5 relative flex flex-col items-center justify-center p-12 bg-black/50">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rt-cyan via-black to-black"></div>
+                        
+                        <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO_REDES_01-removebg-preview.png" class="w-48 opacity-30 filter brightness-0 invert mb-10 relative z-10 hover:opacity-100 hover:scale-105 transition-all duration-500">
+                        
+                        <div class="text-center relative z-10">
+                            <i class="fa-solid fa-location-crosshairs text-3xl text-rt-cyan mb-4 animate-pulse"></i>
+                            <h4 class="font-bold text-white uppercase tracking-widest mb-2">Campus Pishilata</h4>
+                            <p class="text-sm text-gray-400 max-w-[250px] mx-auto">Av. Bolivariana y Francisco Navarrete, Ambato - Ecuador.</p>
+                            
+                            <a href="https://maps.google.com" target="_blank" class="inline-block mt-6 px-6 py-2 border border-white/20 rounded-full text-xs font-bold text-white hover:bg-white hover:text-black transition-colors uppercase tracking-widest">
+                                Abrir en Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5 text-center bg-black relative z-10">
+        <p class="text-gray-600 font-bold tracking-[0.3em] text-[9px] uppercase">Unidad Educativa Guayaquil • Centro de Recursos 2026</p>
+    </footer>
+
+    <!-- INTERACTIVE LOGIC -->
+    <script>
+        // GSAP Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.gs_reveal').forEach(function(elem) {
+            ScrollTrigger.create({
+                trigger: elem,
+                start: "top 85%",
+                onEnter: function() {
+                    gsap.fromTo(elem, 
+                        { y: 50, opacity: 0 }, 
+                        { duration: 1, y: 0, opacity: 1, ease: "power3.out", overwrite: "auto" }
+                    );
+                }
+            });
+        });
+
+        // Copy to Clipboard Logic with Toast Notification
+        function copyData(textToCopy) {
+            // Write to clipboard
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Show Toast
+                const toast = document.getElementById('copy-toast');
+                toast.classList.add('show');
+                
+                // Vibrate for mobile devices (haptic feedback)
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+
+                // Hide Toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert("No se pudo copiar el texto. Inténtalo manualmente.");
+            });
+        }
+    </script>
+    <!-- FLOATING CHATBOT AI -->
+    <div class="fixed bottom-6 right-6 z-[500] flex items-end justify-end gs_reveal">
+        
+        <!-- Chat Interface -->
+        <div id="ai-chat-interface" class="bg-rt-navy/95 backdrop-blur-xl border border-rt-cyan/30 rounded-2xl rounded-br-none mb-4 mr-4 w-[320px] shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 pointer-events-none overflow-hidden relative">
+            
+            <!-- Chat Header -->
+            <div class="bg-gradient-to-r from-rt-blue to-rt-navy p-4 border-b border-white/10 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-rt-cyan rounded-full animate-ping"></div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white uppercase tracking-widest leading-none">Guía Vocacional</h4>
+                        <span class="text-[9px] text-rt-cyan font-bold">ONLINE</span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Chat History -->
+            <div id="chat-history" class="p-4 flex-grow overflow-y-auto flex flex-col gap-3 h-[300px] scroll-smooth custom-scrollbar">
+                <!-- Mensajes inyectados vía JS -->
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-3 border-t border-white/10 bg-black/50 flex gap-2 items-center">
+                <input type="text" id="chat-input" placeholder="Pregúntame algo..." class="w-full bg-transparent border-none text-white text-sm focus:outline-none placeholder-gray-500 px-2 font-light" onkeypress="handleUserMessage(event)">
+                <button onclick="handleUserMessage()" class="text-rt-cyan hover:text-white transition-colors p-2 rounded-full hover:bg-white/5"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            
+        </div>
+        
+        <!-- Mascot Trigger -->
+        <div class="relative cursor-pointer group hover:-translate-y-2 transition-transform duration-300" onclick="toggleChat()">
+            <div class="absolute inset-0 bg-rt-cyan blur-xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity"></div>
+            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-transparent shadow-[0_0_20px_rgba(0,245,255,0.4)] overflow-hidden relative z-10 bg-[#00040A] flex items-center justify-center transition-colors duration-300" id="mascot-container">
+                <img src="MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png" class="w-full h-full object-cover object-top scale-[1.15] transition-all duration-300" alt="Asistente Virtual" id="mascot-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- CHATBOT LOGIC -->
+    <script src="js/chatbot.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 245, 255, 0.2); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 245, 255, 0.5); }
+    </style>
+</body>
+</html>

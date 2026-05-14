@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT HUB | Tour Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rt-navy': '#00040A',
+                        'rt-blue': '#001D3D',
+                        'rt-cyan': '#00F5FF',
+                        'rt-glass': 'rgba(255, 255, 255, 0.02)',
+                    },
+                    fontFamily: {
+                        'outfit': ['Outfit', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        body { background-color: #00040A; color: #F8F9FA; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass-header { background: rgba(0, 4, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .nav-link { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #A0AEC0; transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #00F5FF; }
+
+        .bento-card { background: var(--rt-glass); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2.5rem; overflow: hidden; }
+        
+        /* Interactive Hotspots */
+        .hotspot { z-index: 20; transform: translate(-50%, -50%); cursor: pointer; }
+        .hotspot::after {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="selection:bg-rt-cyan selection:text-rt-navy pt-32">
+
+    <!-- GLOBAL HEADER -->
+    <nav class="glass-header fixed top-0 w-full z-[100] px-6 lg:px-12 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" alt="Sello U.E. Guayaquil" class="h-10 lg:h-12">
+            <div class="hidden md:flex flex-col border-l border-white/10 pl-4">
+                <span class="font-outfit font-black text-sm lg:text-lg tracking-tighter leading-none text-white">REDES Y TELECOMUNICACIONES</span>
+                <span class="text-[8px] tracking-[0.3em] text-rt-cyan font-bold uppercase mt-1">Unidad Educativa Guayaquil</span>
+            </div>
+        </div>
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="nav-link">Ecosistema</a>
+            <a href="malla.html" class="nav-link">Malla Curricular</a>
+            <a href="laboratorio.html" class="nav-link active">Infraestructura</a>
+            <a href="recursos.html" class="nav-link">Recursos</a>
+            <a href="recursos.html#contacto" class="ml-4 bg-white text-rt-navy px-6 py-2 rounded-full font-black text-xs hover:bg-rt-cyan transition-colors">Inscripciones 2026</a>
+        </div>
+    </nav>
+
+    <!-- HERO INTRO -->
+    <section class="container mx-auto px-6 lg:px-12 pt-10 text-center">
+        <div class="inline-flex items-center gap-2 bg-rt-cyan/10 border border-rt-cyan/20 px-4 py-1.5 rounded-full mb-6 gs-reveal">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rt-cyan opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-rt-cyan"></span>
+            </span>
+            <span class="text-[10px] font-black text-rt-cyan tracking-[0.2em] uppercase">Tour Virtual • Campus Pishilata</span>
+        </div>
+        <h1 class="font-outfit text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-4 gs-reveal">
+            TU CENTRO DE <span class="text-transparent bg-clip-text bg-gradient-to-r from-rt-cyan to-white">DATOS.</span><br>TU SALÓN DE CLASES.
+        </h1>
+        <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto font-light mb-12 gs-reveal">Olvídate de lo teórico. Explora interactivamente la infraestructura industrial Cisco donde realizarás simulaciones y proyectos reales 100% prácticos.</p>
+    </section>
+
+    <!-- INTERACTIVE RACK SECTION -->
+    <section class="container mx-auto px-6 lg:px-12 mb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative">
+            
+            <!-- LEFT: Interactive Image -->
+            <div class="lg:col-span-7 relative h-[600px] md:h-[800px] bento-card border border-white/10 group gs-reveal">
+                <img src="MATERIAL PROMOCION/IMAGENES DE LABORATORIO/ChatGPT Image 13 may 2026, 11_18_43 p.m.png" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-1000" id="main-rack-img">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#00040A] via-transparent to-transparent pointer-events-none"></div>
+                
+                <!-- Hotspot 1: Patch Panel (Top) -->
+                <div class="hotspot absolute top-[15%] left-[50%] group/hotspot flex items-center justify-center w-8 h-8" onclick="activateHotspot('patch')">
+                    <span class="absolute inline-flex h-12 w-12 rounded-full bg-rt-cyan opacity-40 animate-ping"></span>
+                    <span class="relative inline-flex rounded-full h-5 w-5 bg-rt-cyan border-2 border-[#00040A] shadow-[0_0_15px_rgba(0,245,255,0.8)] transition-all hotspot-core"></span>
+                    <div class="absolute top-1/2 left-full ml-4 -translate-y-1/2 opacity-0 group-hover/hotspot:opacity-100 transition-opacity bg-black/90 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10 text-xs font-bold text-white whitespace-nowrap pointer-events-none">Explorar Cableado</div>
+                </div>
+
+                <!-- Hotspot 2: Switches (Middle) -->
+                <div class="hotspot absolute top-[40%] left-[45%] group/hotspot flex items-center justify-center w-8 h-8" onclick="activateHotspot('switches')">
+                    <span class="absolute inline-flex h-12 w-12 rounded-full bg-rt-cyan opacity-40 animate-ping"></span>
+                    <span class="relative inline-flex rounded-full h-5 w-5 bg-rt-cyan border-2 border-[#00040A] shadow-[0_0_15px_rgba(0,245,255,0.8)] transition-all hotspot-core"></span>
+                    <div class="absolute top-1/2 left-full ml-4 -translate-y-1/2 opacity-0 group-hover/hotspot:opacity-100 transition-opacity bg-black/90 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10 text-xs font-bold text-white whitespace-nowrap pointer-events-none">Explorar Switches</div>
+                </div>
+
+                <!-- Hotspot 3: Routers (Bottom) -->
+                <div class="hotspot absolute top-[68%] left-[55%] group/hotspot flex items-center justify-center w-8 h-8" onclick="activateHotspot('routers')">
+                    <span class="absolute inline-flex h-12 w-12 rounded-full bg-rt-cyan opacity-40 animate-ping"></span>
+                    <span class="relative inline-flex rounded-full h-5 w-5 bg-rt-cyan border-2 border-[#00040A] shadow-[0_0_15px_rgba(0,245,255,0.8)] transition-all hotspot-core"></span>
+                    <div class="absolute top-1/2 right-full mr-4 -translate-y-1/2 opacity-0 group-hover/hotspot:opacity-100 transition-opacity bg-black/90 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10 text-xs font-bold text-white whitespace-nowrap pointer-events-none">Explorar Routers</div>
+                </div>
+                
+                <div class="absolute bottom-8 left-8 right-8 text-center pointer-events-none">
+                    <div class="inline-flex items-center justify-center bg-black/50 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full animate-pulse">
+                        <p class="text-xs text-white font-bold tracking-widest uppercase"><i class="fa-solid fa-hand-pointer text-rt-cyan mr-2"></i> Toca los puntos interactivos</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Dynamic Info Panel -->
+            <div class="lg:col-span-5 flex flex-col justify-center gs-reveal" style="transition-delay: 0.2s">
+                <div id="info-panel" class="bento-card p-10 lg:p-12 bg-gradient-to-br from-rt-blue/40 to-transparent relative overflow-hidden transition-all duration-500 min-h-[500px] border-t-4 border-t-rt-cyan flex flex-col">
+                    <div class="absolute -top-10 -right-10 p-10 opacity-[0.03] transition-all duration-700" id="info-icon-bg">
+                        <i id="info-icon" class="fa-solid fa-server text-[250px]"></i>
+                    </div>
+                    
+                    <div class="relative z-10 flex-grow flex flex-col justify-center">
+                        <span id="info-badge" class="inline-block bg-rt-cyan text-rt-navy text-[10px] px-3 py-1.5 rounded-sm font-black uppercase tracking-widest self-start mb-6 shadow-[0_0_15px_rgba(0,245,255,0.5)]">INICIA EL TOUR</span>
+                        
+                        <h3 id="info-title" class="font-outfit text-4xl lg:text-5xl font-black text-white mb-6 uppercase leading-none">Interconecta tu futuro</h3>
+                        
+                        <p id="info-desc" class="text-gray-300 text-sm lg:text-base leading-relaxed mb-10 border-l-2 border-rt-cyan/30 pl-4">Selecciona cualquier componente iluminado en el rack de la izquierda. Descubrirás el hardware industrial con el que los técnicos de nivel empresarial operan día a día.</p>
+                        
+                        <div id="info-specs" class="grid grid-cols-2 gap-6 border-t border-white/10 pt-8 mt-auto opacity-50">
+                            <div>
+                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Estado</p>
+                                <p class="font-black text-white text-sm">Esperando interacción...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOFTWARE SECTION -->
+    <section class="bg-gradient-to-b from-[#00040A] via-rt-blue/10 to-[#00040A] py-24 border-y border-white/5">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16 gs-reveal">
+                <h2 class="font-outfit text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-4">SOFTWARE DE <span class="text-rt-cyan">INGENIERÍA</span></h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">No solo tocamos cables. Modelamos, simulamos y virtualizamos infraestructuras complejas completas antes de llevarlas al mundo real.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- EVE NG -->
+                <div class="bento-card p-10 group hover:-translate-y-2 transition-all duration-500 gs-reveal relative overflow-hidden bg-gradient-to-br from-[#0a0f1a] to-black">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-rt-cyan opacity-5 rounded-full blur-3xl group-hover:opacity-20 transition-opacity"></div>
+                    <i class="fa-solid fa-terminal text-4xl text-rt-cyan mb-6 bg-white/5 p-4 rounded-2xl inline-block border border-white/10 group-hover:border-rt-cyan/50 transition-colors"></i>
+                    <h3 class="font-outfit text-2xl font-black text-white uppercase mb-3">EVE-NG Professional</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">El simulador multivendor líder en la industria. Permite a los estudiantes virtualizar redes masivas, integrar firewalls reales (Fortinet, Palo Alto) y sistemas operativos Linux/Windows en un solo ecosistema.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white/5 text-gray-300 text-[10px] px-3 py-1 rounded border border-white/10 font-bold uppercase tracking-widest">Virtualización</span>
+                        <span class="bg-white/5 text-gray-300 text-[10px] px-3 py-1 rounded border border-white/10 font-bold uppercase tracking-widest">Multivendor</span>
+                    </div>
+                </div>
+
+                <!-- Packet Tracer -->
+                <div class="bento-card p-10 group hover:-translate-y-2 transition-all duration-500 gs-reveal relative overflow-hidden bg-gradient-to-br from-[#0a0f1a] to-black">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-rt-lightblue opacity-5 rounded-full blur-3xl group-hover:opacity-20 transition-opacity"></div>
+                    <i class="fa-solid fa-diagram-project text-4xl text-rt-lightblue mb-6 bg-white/5 p-4 rounded-2xl inline-block border border-white/10 group-hover:border-rt-lightblue/50 transition-colors"></i>
+                    <h3 class="font-outfit text-2xl font-black text-white uppercase mb-3">Cisco Packet Tracer</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Herramienta oficial de la Academia Cisco. Fundamental para modelado lógico, diseño de topologías y comprobación minuciosa de flujos de datos y paquetes en redes LAN y WAN a nivel académico.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white/5 text-gray-300 text-[10px] px-3 py-1 rounded border border-white/10 font-bold uppercase tracking-widest">Modelado Lógico</span>
+                        <span class="bg-white/5 text-gray-300 text-[10px] px-3 py-1 rounded border border-white/10 font-bold uppercase tracking-widest">Cisco NetAcad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="container mx-auto px-6 lg:px-12 py-24">
+        <h2 class="font-outfit text-3xl font-black text-white uppercase tracking-tighter mb-10 gs-reveal">ESPACIOS OPTIMIZADOS</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 gs-reveal">
+            <div class="bento-card h-[400px] p-0 group">
+                <img src="MATERIAL PROMOCION/IMAGENES DE LABORATORIO/ChatGPT Image 13 may 2026, 11_20_09 p.m.png" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+            </div>
+            <div class="bento-card h-[400px] p-0 group">
+                <img src="MATERIAL PROMOCION/IMAGENES DE LABORATORIO/ChatGPT Image 13 may 2026, 11_21_38 p.m.png" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center bg-black">
+        <p class="text-gray-600 font-bold tracking-[0.3em] text-[9px] uppercase">Unidad Educativa Guayaquil • Laboratorios Técnicos 2026</p>
+    </footer>
+
+    <!-- INTERACTIVE LOGIC & GSAP -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll Animations
+        gsap.utils.toArray('.gs-reveal').forEach(function(elem) {
+            gsap.fromTo(elem, 
+                { y: 50, opacity: 0 }, 
+                {
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%", 
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1, 
+                    ease: "power3.out"
+                }
+            );
+        });
+
+        // Hotspot Logic
+        const hotspotData = {
+            'patch': {
+                badge: 'Capa Física (L1)',
+                title: 'Patch Panels & Cableado',
+                desc: 'La columna vertebral de la infraestructura física. Aquí dominarás el estándar ANSI/TIA-568C, la certificación de cableado estructurado UTP/FTP de alta densidad y el parcheo profesional corporativo.',
+                icon: 'fa-network-wired',
+                specs: [
+                    { label: 'Categoría Soporte', value: 'CAT 6 / 6A / Fibra' },
+                    { label: 'Normativa', value: 'EIA/TIA-568' }
+                ]
+            },
+            'switches': {
+                badge: 'Distribución (L2/L3)',
+                title: 'Switches Cisco Catalyst',
+                desc: 'Equipamiento de conmutación de alto rendimiento. En este nivel configurarás Virtual LANs (VLANs), protocolos de redundancia como Spanning Tree (STP), EtherChannel y políticas estrictas de seguridad de puertos.',
+                icon: 'fa-microchip',
+                specs: [
+                    { label: 'Sistema Operativo', value: 'Cisco IOS' },
+                    { label: 'Protocolos Base', value: 'VTP, STP, 802.1Q' }
+                ]
+            },
+            'routers': {
+                badge: 'Núcleo / Core (L3)',
+                title: 'Routers de Servicios (ISR)',
+                desc: 'Los directores del tráfico de internet. Operarás hardware de enrutamiento industrial implementando protocolos dinámicos (OSPF, BGP), Listas de Control de Acceso (ACLs) y Traducción de Redes (NAT).',
+                icon: 'fa-router',
+                specs: [
+                    { label: 'Nivel Tecnológico', value: 'Enterprise Routing' },
+                    { label: 'Funciones Críticas', value: 'NAT, ACLs, BGP' }
+                ]
+            }
+        };
+
+        function activateHotspot(id) {
+            const data = hotspotData[id];
+            const panel = document.getElementById('info-panel');
+            
+            // Visual Hotspot active state
+            document.querySelectorAll('.hotspot-core').forEach(h => {
+                h.classList.remove('bg-white', 'border-white', 'scale-125');
+                h.classList.add('bg-rt-cyan', 'border-[#00040A]');
+            });
+            const activeCore = document.querySelector(`.hotspot[onclick="activateHotspot('${id}')"] .hotspot-core`);
+            activeCore.classList.remove('bg-rt-cyan', 'border-[#00040A]');
+            activeCore.classList.add('bg-white', 'border-white', 'scale-125');
+
+            // Animate content change
+            gsap.to(['#info-badge', '#info-title', '#info-desc', '#info-specs'], { 
+                opacity: 0, 
+                y: -10, 
+                duration: 0.2, 
+                stagger: 0.05,
+                onComplete: () => {
+                    // Update content
+                    document.getElementById('info-badge').innerText = data.badge;
+                    document.getElementById('info-title').innerText = data.title;
+                    document.getElementById('info-desc').innerText = data.desc;
+                    document.getElementById('info-icon').className = `fa-solid ${data.icon} text-[250px]`;
+                    
+                    const specsContainer = document.getElementById('info-specs');
+                    specsContainer.innerHTML = '';
+                    specsContainer.className = "grid grid-cols-2 gap-6 border-t border-white/10 pt-8 mt-auto opacity-100";
+                    data.specs.forEach(spec => {
+                        specsContainer.innerHTML += `
+                            <div>
+                                <p class="text-[10px] text-rt-cyan uppercase font-bold tracking-widest mb-1">${spec.label}</p>
+                                <p class="font-black text-white text-sm md:text-base">${spec.value}</p>
+                            </div>
+                        `;
+                    });
+                    
+                    // Animate in
+                    gsap.to(['#info-badge', '#info-title', '#info-desc', '#info-specs'], { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.4, 
+                        stagger: 0.1,
+                        ease: "power2.out" 
+                    });
+
+                    // Icon pop
+                    gsap.fromTo('#info-icon-bg', 
+                        { scale: 0.8, opacity: 0, rotation: -10 }, 
+                        { scale: 1, opacity: 0.03, rotation: 0, duration: 1, ease: "elastic.out(1, 0.3)" }
+                    );
+                }
+            });
+            
+            // Add a subtle border glow pulse to the panel
+            gsap.fromTo(panel, 
+                { boxShadow: "0 0 0 rgba(0, 245, 255, 0)" }, 
+                { boxShadow: "0 0 50px rgba(0, 245, 255, 0.15)", duration: 0.5, yoyo: true, repeat: 1 }
+            );
+        }
+    </script>
+    <!-- FLOATING CHATBOT AI -->
+    <div class="fixed bottom-6 right-6 z-[500] flex items-end justify-end gs_reveal">
+        
+        <!-- Chat Interface -->
+        <div id="ai-chat-interface" class="bg-rt-navy/95 backdrop-blur-xl border border-rt-cyan/30 rounded-2xl rounded-br-none mb-4 mr-4 w-[320px] shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 pointer-events-none overflow-hidden relative">
+            
+            <!-- Chat Header -->
+            <div class="bg-gradient-to-r from-rt-blue to-rt-navy p-4 border-b border-white/10 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-rt-cyan rounded-full animate-ping"></div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white uppercase tracking-widest leading-none">Guía Vocacional</h4>
+                        <span class="text-[9px] text-rt-cyan font-bold">ONLINE</span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Chat History -->
+            <div id="chat-history" class="p-4 flex-grow overflow-y-auto flex flex-col gap-3 h-[300px] scroll-smooth custom-scrollbar">
+                <!-- Mensajes inyectados vía JS -->
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-3 border-t border-white/10 bg-black/50 flex gap-2 items-center">
+                <input type="text" id="chat-input" placeholder="Pregúntame algo..." class="w-full bg-transparent border-none text-white text-sm focus:outline-none placeholder-gray-500 px-2 font-light" onkeypress="handleUserMessage(event)">
+                <button onclick="handleUserMessage()" class="text-rt-cyan hover:text-white transition-colors p-2 rounded-full hover:bg-white/5"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            
+        </div>
+        
+        <!-- Mascot Trigger -->
+        <div class="relative cursor-pointer group hover:-translate-y-2 transition-transform duration-300" onclick="toggleChat()">
+            <div class="absolute inset-0 bg-rt-cyan blur-xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity"></div>
+            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-transparent shadow-[0_0_20px_rgba(0,245,255,0.4)] overflow-hidden relative z-10 bg-[#00040A] flex items-center justify-center transition-colors duration-300" id="mascot-container">
+                <img src="MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png" class="w-full h-full object-cover object-top scale-[1.15] transition-all duration-300" alt="Asistente Virtual" id="mascot-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- CHATBOT LOGIC -->
+    <script src="js/chatbot.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 245, 255, 0.2); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 245, 255, 0.5); }
+    </style>
+</body>
+</html>

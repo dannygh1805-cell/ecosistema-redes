@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT HUB | Ruta de Aprendizaje</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rt-navy': '#00040A',
+                        'rt-cyan': '#00F5FF', /* Azul Tecnológico (Especialización) */
+                        'rt-lightblue': '#7DD3FC', /* Azul Claro (Genéricos) */
+                        'rt-glass': 'rgba(255, 255, 255, 0.03)',
+                    },
+                    fontFamily: {
+                        'outfit': ['Outfit', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #00040A; color: #F8F9FA; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass-header { background: rgba(0, 4, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .nav-link { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #A0AEC0; transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #00F5FF; }
+
+        /* Card Styles */
+        .module-card { 
+            background: var(--rt-glass); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 1.5rem; 
+            padding: 1.5rem; 
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .module-card.generic { border-top: 3px solid theme('colors.rt-lightblue'); }
+        .module-card.specialization { border-top: 3px solid theme('colors.rt-cyan'); }
+
+        .module-card:hover.generic { border-color: theme('colors.rt-lightblue'); box-shadow: 0 10px 30px rgba(125, 211, 252, 0.1); }
+        .module-card:hover.specialization { border-color: theme('colors.rt-cyan'); box-shadow: 0 10px 30px rgba(0, 245, 255, 0.1); }
+
+        /* Hover Hours Effect */
+        .hours-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            z-index: 20;
+        }
+
+        .module-card.generic .hours-badge { color: theme('colors.rt-lightblue'); border: 1px solid theme('colors.rt-lightblue'); }
+        .module-card.specialization .hours-badge { color: theme('colors.rt-cyan'); border: 1px solid theme('colors.rt-cyan'); }
+
+        .module-card:hover .hours-badge {
+            transform: scale(1.1);
+        }
+        
+        .module-card:hover.generic .hours-badge { background: theme('colors.rt-lightblue'); color: #000; }
+        .module-card:hover.specialization .hours-badge { background: theme('colors.rt-cyan'); color: #000; }
+
+        /* Background Image */
+        .card-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.05;
+            filter: grayscale(100%);
+            transition: all 0.5s;
+            z-index: 0;
+        }
+        .module-card:hover .card-bg { opacity: 0.2; filter: grayscale(50%); }
+
+        .card-content { position: relative; z-index: 10; flex-grow: 1; display: flex; flex-direction: column; }
+    </style>
+</head>
+<body class="selection:bg-rt-cyan selection:text-rt-navy pt-32">
+
+    <!-- GLOBAL HEADER -->
+    <nav class="glass-header fixed top-0 w-full z-[100] px-6 lg:px-12 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" alt="Sello U.E. Guayaquil" class="h-10 lg:h-12">
+            <div class="hidden md:flex flex-col border-l border-white/10 pl-4">
+                <span class="font-outfit font-black text-sm lg:text-lg tracking-tighter leading-none text-white">REDES Y TELECOMUNICACIONES</span>
+                <span class="text-[8px] tracking-[0.3em] text-rt-cyan font-bold uppercase mt-1">Unidad Educativa Guayaquil</span>
+            </div>
+        </div>
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="nav-link">Ecosistema</a>
+            <a href="malla.html" class="nav-link active">Malla Curricular</a>
+            <a href="laboratorio.html" class="nav-link">Infraestructura</a>
+            <a href="recursos.html" class="nav-link">Recursos</a>
+            <a href="recursos.html#contacto" class="ml-4 bg-white text-rt-navy px-6 py-2 rounded-full font-black text-xs hover:bg-rt-cyan transition-colors">Inscripciones 2026</a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="container mx-auto px-6 lg:px-12 min-h-screen pb-20">
+        <header class="mb-12 text-center">
+            <h1 class="font-outfit text-5xl md:text-6xl font-black uppercase tracking-tighter mb-4">Ruta de Aprendizaje: <br><span class="text-rt-cyan">Formación Técnica en Redes</span></h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">Malla curricular oficial de la Figura Profesional en Redes y Telecomunicaciones.</p>
+            
+            <div class="flex justify-center gap-6 mt-8">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-rt-lightblue rounded-full"></span>
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Módulos Genéricos</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-rt-cyan rounded-full"></span>
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Módulos de Especialización</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 3-COLUMN LAYOUT -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- COLUMN 1: 1ER AÑO -->
+            <div class="space-y-6 flex flex-col">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center mb-8 sticky top-32 z-50 backdrop-blur-md">
+                    <h2 class="font-outfit text-3xl font-black text-white">1ER AÑO</h2>
+                    <p class="text-[10px] text-rt-cyan uppercase font-bold tracking-widest mt-1">Cimientos de la Conectividad</p>
+                </div>
+
+                <!-- Generic -->
+                <div class="module-card generic cursor-pointer group flex-grow" onclick="openModuleModal('tic')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_18_23.png" class="card-bg">
+                    <div class="hours-badge">3H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-microchip text-3xl text-rt-lightblue mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Fundamentos de las TIC</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Estudio profundo de la evolución tecnológica. Comprende el ensamblaje y arquitectura de computadoras (hardware/software), junto con las bases prácticas de electricidad y electrónica digital fundamentales para el soporte técnico.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-lightblue/10 text-rt-lightblue text-[10px] px-2 py-1 rounded border border-rt-lightblue/20 font-bold">Hardware</span>
+                                <span class="bg-rt-lightblue/10 text-rt-lightblue text-[10px] px-2 py-1 rounded border border-rt-lightblue/20 font-bold">Electrónica Básica</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-lightblue transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generic -->
+                <div class="module-card generic cursor-pointer group flex-grow" onclick="openModuleModal('comp')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_39_55.png" class="card-bg">
+                    <div class="hours-badge">3H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-code text-3xl text-rt-lightblue mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Pensamiento Computacional</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Desarrollo del razonamiento lógico-matemático orientado a la resolución de problemas. Incluye diseño de algoritmos, diagramas de flujo y programación estructurada para sentar las bases en el desarrollo de soluciones informáticas.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-lightblue/10 text-rt-lightblue text-[10px] px-2 py-1 rounded border border-rt-lightblue/20 font-bold">Algoritmos</span>
+                                <span class="bg-rt-lightblue/10 text-rt-lightblue text-[10px] px-2 py-1 rounded border border-rt-lightblue/20 font-bold">Programación Base</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-lightblue transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generic -->
+                <div class="module-card generic cursor-pointer group flex-grow" onclick="openModuleModal('etica')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_14_32 (1).png" class="card-bg">
+                    <div class="hours-badge">2H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-scale-balanced text-3xl text-rt-lightblue mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Ética y Ciudadanía Digital</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Formación integral en derechos y deberes digitales. Aborda marcos legales de privacidad, prevención de riesgos informáticos, netiqueta y el manejo responsable de la información en entornos colaborativos.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-lightblue/10 text-rt-lightblue text-[10px] px-2 py-1 rounded border border-rt-lightblue/20 font-bold">Ciberseguridad Legal</span>
+                                <span class="bg-rt-lightblue/10 text-rt-lightblue text-[10px] px-2 py-1 rounded border border-rt-lightblue/20 font-bold">Privacidad</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-lightblue transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialization -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('diseno')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_21_02.png" class="card-bg">
+                    <div class="hours-badge">4H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-pen-ruler text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Diseño de Infraestructura de Redes</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Primer acercamiento a la ingeniería de redes. Abarca la interpretación de esquemas técnicos, cálculo de capacidades, selección de dispositivos y la planificación física considerando normativas de escalabilidad.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Topologías Físicas</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Planos Técnicos</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialization -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('sistemas1')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_23_44.png" class="card-bg">
+                    <div class="hours-badge">3H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-wave-square text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Sistemas Digitales y Telecomunicaciones</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Bases de la comunicación digital. Estudio de señales (analógicas y digitales), modulación, códigos binarios y el funcionamiento de componentes electrónicos (multiplexores, puertas lógicas) esenciales para la transmisión.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Señales Digitales</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Modulación</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: 2DO AÑO -->
+            <div class="space-y-6 flex flex-col">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center mb-8 sticky top-32 z-50 backdrop-blur-md">
+                    <h2 class="font-outfit text-3xl font-black text-white">2DO AÑO</h2>
+                    <p class="text-[10px] text-rt-cyan uppercase font-bold tracking-widest mt-1">Desarrollo y Configuración</p>
+                </div>
+
+                <!-- Specialization -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('redes')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_41_36.png" class="card-bg">
+                    <div class="hours-badge">3H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-network-wired text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Redes y Comunicación de Datos</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Inmersión técnica en el modelo OSI y TCP/IP. Análisis detallado de topologías (LAN/WAN), direccionamiento IP, enrutamiento estático y dinámico, y el uso intensivo de medios guiados y no guiados.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Modelo TCP/IP</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Subnetting v4/v6</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialization -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('inst')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_14_32 (2).png" class="card-bg">
+                    <div class="hours-badge">4H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-router text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Instalación y Configuración de Redes</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Aplicación práctica bajo estándares internacionales (ANSI/TIA). Involucra el montaje físico de racks, canalización, terminación de cableado estructurado y la configuración inicial de switches y routers.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Racks & Fibra</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Cisco IOS Básico</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialization -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('sistemas2')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_19_38.png" class="card-bg">
+                    <div class="hours-badge">3H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-satellite-dish text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Sistemas Digitales y Telecomunicaciones II</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Nivel intermedio enfocado en la interoperabilidad. Configuración de parámetros de transmisión en equipos activos, sincronización de señales en módulos y uso de software de simulación para diagnósticos.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Interoperabilidad</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Diagnóstico Wireless</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialization (Practical) -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('practico1')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_22_33.png" class="card-bg">
+                    <div class="hours-badge">3H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-helmet-safety text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Módulo Práctico / Experimental I</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Integración de conocimientos mediante proyectos reales. Los estudiantes ejecutan instalaciones piloto, configuran servicios básicos en laboratorio y comienzan a interactuar con metodologías del sector productivo.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Pilotos Reales</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Laboratorio</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 3: 3ER AÑO -->
+            <div class="space-y-6 flex flex-col">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center mb-8 sticky top-32 z-50 backdrop-blur-md">
+                    <h2 class="font-outfit text-3xl font-black text-white">3ER AÑO</h2>
+                    <p class="text-[10px] text-rt-cyan uppercase font-bold tracking-widest mt-1">Administración y Especialización</p>
+                </div>
+
+                <!-- Specialization -->
+                <div class="module-card specialization cursor-pointer group flex-grow" style="border-top-width: 4px; box-shadow: 0 0 20px rgba(0,245,255,0.05);" onclick="openModuleModal('admin')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_46_01.png" class="card-bg">
+                    <div class="hours-badge" style="background: theme('colors.rt-cyan'); color: #000;">6H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-shield-halved text-4xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-lg">Administración de Redes</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">El módulo cumbre. Formación avanzada en sistemas operativos de servidor, implementación de cortafuegos (firewalls), gestión de políticas de seguridad, monitoreo de tráfico y respuesta ante incidentes para mantener un uptime de excelencia.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan text-black text-[10px] px-2 py-1 rounded border border-rt-cyan font-black">Servidores SO</span>
+                                <span class="bg-rt-cyan text-black text-[10px] px-2 py-1 rounded border border-rt-cyan font-black">Ciberseguridad</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialization -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('inst_av')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_24_59.png" class="card-bg">
+                    <div class="hours-badge">5H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-server text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Instalación y Configuración Avanzada</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Optimización de redes complejas. Implementación de redes virtuales (VLANs), protocolos de enrutamiento avanzado, balanceo de carga y aseguramiento de la disponibilidad y redundancia de enlaces principales.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">VLANs / STP</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Cisco IOS Avanzado</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialization -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('sistemas3')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_57_52.png" class="card-bg">
+                    <div class="hours-badge">4H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-signal text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Sistemas Digitales Avanzados</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Especialización en calidad de transmisión. Uso de herramientas de diagnóstico industrial (Wireshark) para analizar latencia, pérdida de paquetes y garantizar la Calidad de Servicio (QoS) en redes convergentes.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Análisis QoS</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">VoIP</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialization (Practical) -->
+                <div class="module-card specialization cursor-pointer group flex-grow" onclick="openModuleModal('practico2')">
+                    <img src="MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_36_50.png" class="card-bg">
+                    <div class="hours-badge">4H</div>
+                    <div class="card-content flex flex-col h-full">
+                        <i class="fa-solid fa-briefcase text-3xl text-rt-cyan mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-black text-white mb-3 uppercase text-base">Módulo Práctico / Experimental II (FCT)</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed flex-grow">Las 160 horas de Formación en Centros de Trabajo (FCT). Inmersión directa en empresas aliadas donde se aplican las competencias en resolución de problemas reales, consolidando la inserción al mundo laboral.</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Prácticas FCT (160h)</span>
+                                <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-2 py-1 rounded border border-rt-cyan/20 font-bold">Graduación</span>
+                            </div>
+                            <div class="text-right border-t border-white/5 pt-3">
+                                <span class="text-xs font-bold text-gray-400 group-hover:text-rt-cyan transition-colors flex items-center justify-end gap-2">Ver proyectos y detalles <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center mt-20">
+        <p class="text-gray-600 font-bold tracking-[0.3em] text-[9px] uppercase">Unidad Educativa Guayaquil • Ruta de Aprendizaje 2026</p>
+    </footer>
+
+    <!-- MODULE DETAIL MODAL -->
+    <div id="module-modal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500 p-6">
+        <div class="bg-[#000B1E] border border-rt-cyan/30 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-[0_0_50px_rgba(0,245,255,0.15)] relative transform scale-95 transition-transform duration-500" id="modal-container">
+            <button onclick="closeModuleModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors z-20 bg-black/50 w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <div class="relative h-48 md:h-64 overflow-hidden rounded-t-3xl border-b border-white/10">
+                <img id="modal-img" src="" class="w-full h-full object-cover opacity-30">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#000B1E] to-transparent"></div>
+                <div class="absolute bottom-6 left-8 right-8">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span id="modal-badge" class="bg-rt-cyan text-rt-navy px-3 py-1 rounded-sm font-black text-[10px] uppercase tracking-widest"></span>
+                        <span id="modal-hours" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-1 rounded-sm font-black text-[10px] uppercase tracking-widest"></span>
+                    </div>
+                    <h2 id="modal-title" class="font-outfit text-3xl md:text-5xl font-black text-white leading-tight"></h2>
+                </div>
+            </div>
+
+            <div class="p-8 md:p-12 space-y-10">
+                <!-- Learning -->
+                <div>
+                    <h3 class="text-rt-cyan font-bold text-sm uppercase tracking-widest mb-4 flex items-center gap-3 border-b border-white/10 pb-2"><i class="fa-solid fa-brain"></i> ¿Qué Aprenderán?</h3>
+                    <p id="modal-learn" class="text-gray-300 text-sm leading-relaxed"></p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- Projects -->
+                    <div>
+                        <h3 class="text-rt-cyan font-bold text-sm uppercase tracking-widest mb-4 flex items-center gap-3 border-b border-white/10 pb-2"><i class="fa-solid fa-diagram-project"></i> Proyectos Prácticos</h3>
+                        <ul id="modal-projects" class="space-y-3 text-sm text-gray-300">
+                        </ul>
+                    </div>
+                    
+                    <!-- Application -->
+                    <div>
+                        <h3 class="text-rt-cyan font-bold text-sm uppercase tracking-widest mb-4 flex items-center gap-3 border-b border-white/10 pb-2"><i class="fa-solid fa-briefcase"></i> Ámbito de Aplicación</h3>
+                        <p id="modal-field" class="text-gray-300 text-sm leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const moduleDetails = {
+            'tic': {
+                type: 'Módulo Genérico', typeClass: 'bg-rt-lightblue', hours: '3 Horas / Semana', title: 'Fundamentos de las TIC', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_18_23.png',
+                learn: 'Dominarán la arquitectura interna de computadoras, ensamblaje de hardware, instalación de software base y sistemas operativos. Además, adquirirán bases sólidas en electricidad y electrónica digital necesarias para dar soporte técnico integral.',
+                projects: ['Ensamblaje y configuración de una PC desde cero.', 'Diseño de circuitos electrónicos básicos en protoboard.', 'Instalación dual de sistemas operativos (Windows/Linux).'],
+                field: 'Soporte Técnico de Nivel 1, Mantenimiento de Hardware y Help Desk en empresas corporativas.'
+            },
+            'comp': {
+                type: 'Módulo Genérico', typeClass: 'bg-rt-lightblue', hours: '3 Horas / Semana', title: 'Pensamiento Computacional', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_39_55.png',
+                learn: 'Desarrollarán la capacidad de resolver problemas complejos mediante lógica matemática y algoritmia. Aprenderán a diseñar diagramas de flujo y escribir código estructurado para automatizar tareas repetitivas.',
+                projects: ['Desarrollo de calculadoras lógicas y conversores de sistemas numéricos.', 'Creación de scripts de automatización de tareas en Python.', 'Diseño de interfaces gráficas básicas (GUI).'],
+                field: 'Desarrollo de Software Básico, Automatización de Procesos IT y Análisis de Sistemas.'
+            },
+            'etica': {
+                type: 'Módulo Genérico', typeClass: 'bg-rt-lightblue', hours: '2 Horas / Semana', title: 'Ética y Ciudadanía Digital', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_14_32 (1).png',
+                learn: 'Entenderán el marco legal de la tecnología. Aprenderán sobre leyes de protección de datos personales, licenciamiento de software, prevención de ciberdelitos y cómo mantener una huella digital profesional y segura.',
+                projects: ['Auditoría básica de privacidad en redes sociales.', 'Campaña de concientización sobre Phishing en la institución.', 'Análisis de licencias de software en entornos corporativos.'],
+                field: 'Cumplimiento Normativo IT (Compliance), Asesoría en Privacidad Digital y Seguridad de la Información.'
+            },
+            'diseno': {
+                type: 'Módulo de Especialización', typeClass: 'bg-rt-cyan', hours: '4 Horas / Semana', title: 'Diseño de Infraestructura de Redes', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_21_02.png',
+                learn: 'Aprenderán a interpretar planos arquitectónicos para diseñar redes escalables. Calcularán anchos de banda, seleccionarán topologías adecuadas y elaborarán documentación técnica (planos físicos y lógicos) usando normativas.',
+                projects: ['Diseño de la red LAN completa para un edificio de 3 pisos.', 'Elaboración de planos de cableado estructurado en software CAD.', 'Cálculo y presupuesto de materiales pasivos de red.'],
+                field: 'Consultoría en Infraestructura, Diseño de Redes Corporativas y Proyectos de Ingeniería TIC.'
+            },
+            'sistemas1': {
+                type: 'Módulo de Especialización', typeClass: 'bg-rt-cyan', hours: '3 Horas / Semana', title: 'Sistemas Digitales y Telecomunicaciones', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_23_44.png',
+                learn: 'Comprenderán cómo la información viaja por los cables y el aire. Estudiarán modulación de señales, conversión analógica-digital, y el funcionamiento de componentes como multiplexores y microcontroladores.',
+                projects: ['Simulación de circuitos lógicos en Proteus.', 'Pruebas de transmisión de señales por medios físicos.', 'Construcción de medidores básicos de voltaje.'],
+                field: 'Telecomunicaciones Básicas, Electrónica de Red y Mantenimiento de Equipos de Transmisión.'
+            },
+            'redes': {
+                type: 'Módulo de Especialización', typeClass: 'bg-rt-cyan', hours: '3 Horas / Semana', title: 'Redes y Comunicación de Datos', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_41_36.png',
+                learn: 'Inmersión total en cómo se comunican las computadoras. Dominarán el Modelo OSI, protocolos TCP/IP, direccionamiento IPv4/IPv6, y el enrutamiento estático y dinámico para conectar múltiples redes.',
+                projects: ['Configuración de subredes (Subnetting) para una empresa real.', 'Simulación de enrutamiento OSPF en Packet Tracer.', 'Análisis de tráfico de red usando Wireshark.'],
+                field: 'Administración de Redes Junior, Configuración de Equipos Activos y Gestión de Tráfico de Datos.'
+            },
+            'inst': {
+                type: 'Módulo de Especialización', typeClass: 'bg-rt-cyan', hours: '4 Horas / Semana', title: 'Instalación y Configuración de Redes', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_14_32 (2).png',
+                learn: 'Trabajo manual y técnico intensivo. Aprenderán a armar racks, instalar patch panels, canalizar cables según normas ANSI/TIA-568 y configurar switches/routers Cisco para proveer conectividad.',
+                projects: ['Armado completo de un Rack de Telecomunicaciones.', 'Certificación y ponchado de cables UTP y Fibra Óptica.', 'Configuración inicial de switches capa 2.'],
+                field: 'Técnico Instalador de Redes, Despliegue de Infraestructura Física e Instalador de Fibra Óptica.'
+            },
+            'sistemas2': {
+                type: 'Módulo de Especialización', typeClass: 'bg-rt-cyan', hours: '3 Horas / Semana', title: 'Sistemas Digitales y Telecomunicaciones II', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_19_38.png',
+                learn: 'Profundización en la interoperabilidad de dispositivos. Configuración de parámetros de transmisión, sincronización de señales y el uso de herramientas de diagnóstico industrial para identificar cuellos de botella.',
+                projects: ['Diagnóstico de atenuación en enlaces inalámbricos.', 'Simulación de redes IoT (Internet of Things).', 'Medición de latencia y jitter en entornos simulados.'],
+                field: 'Diagnóstico de Telecomunicaciones, Optimización de Redes Inalámbricas y Operación de Nodos.'
+            },
+            'practico1': {
+                type: 'Módulo Práctico', typeClass: 'bg-rt-cyan', hours: '3 Horas / Semana', title: 'Módulo Práctico / Experimental I', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_22_33.png',
+                learn: 'Transición de la teoría a la práctica empresarial. En este módulo, aplicarán todos los conocimientos del año en proyectos integradores que simulan requerimientos reales de clientes corporativos.',
+                projects: ['Implementación de una red de oficinas pequeñas (SOHO).', 'Simulacro de atención de tickets de soporte técnico.', 'Auditoría física de los laboratorios de la institución.'],
+                field: 'Gestión de Proyectos IT Junior, Soporte en Terreno y Asistencia Técnica Empresarial.'
+            },
+            'admin': {
+                type: 'Módulo de Especialización', typeClass: 'bg-rt-cyan', hours: '6 Horas / Semana', title: 'Administración de Redes', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_46_01.png',
+                learn: 'El módulo estrella. Aprenderán a gestionar servidores (Windows Server / Linux), configurar servicios (DNS, DHCP, Web) e implementar robustas políticas de ciberseguridad mediante Firewalls para proteger datos empresariales.',
+                projects: ['Despliegue de un Servidor de Dominio y Directorio Activo.', 'Configuración de un Firewall para bloqueo de intrusos.', 'Implementación de un sistema de monitoreo (Nagios/Zabbix).'],
+                field: 'Administrador de Sistemas (SysAdmin), Analista de Ciberseguridad Junior y Gestor de Data Centers.'
+            },
+            'inst_av': {
+                type: 'Módulo de Especialización', typeClass: 'bg-rt-cyan', hours: '5 Horas / Semana', title: 'Instalación y Configuración Avanzada', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 14 may 2026, 00_24_59.png',
+                learn: 'Llevarán las redes al siguiente nivel. Aprenderán a configurar Redes Virtuales (VLANs), protocolos de enrutamiento avanzado (BGP, OSPF multinivel), Spanning Tree, redundancia de enlaces y balanceo de carga.',
+                projects: ['Configuración de VLANs segmentadas para una corporación.', 'Implementación de enlaces redundantes tolerantes a fallos.', 'Simulación de redes empresariales en EVE-NG.'],
+                field: 'Ingeniería de Redes, Arquitecto de Soluciones de Conectividad y Administrador de Redes Senior.'
+            },
+            'sistemas3': {
+                type: 'Módulo de Especialización', typeClass: 'bg-rt-cyan', hours: '4 Horas / Semana', title: 'Sistemas Digitales Avanzados', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_57_52.png',
+                learn: 'Especialización en la Calidad de Servicio (QoS). Aprenderán a priorizar tráfico crítico (como VoIP o Video en tiempo real) sobre redes saturadas, garantizando una comunicación fluida en empresas de telecomunicaciones.',
+                projects: ['Configuración de Telefonía IP y anexos VoIP.', 'Implementación de políticas QoS para priorizar videollamadas.', 'Auditoría de rendimiento de red y entrega de SLA.'],
+                field: 'Ingeniero de Telecomunicaciones, Especialista en Telefonía IP y Administrador de Calidad de Servicio.'
+            },
+            'practico2': {
+                type: 'Módulo Práctico', typeClass: 'bg-rt-cyan', hours: '4 Horas / Semana', title: 'Módulo Práctico / Experimental II (FCT)', img: 'MATERIAL PROMOCION/IMAGENES/ChatGPT Image 12 may 2026, 19_36_50.png',
+                learn: 'Inmersión laboral total. Cumplirán 160 horas de Formación en Centros de Trabajo (FCT) directamente en empresas aliadas, enfrentándose a problemas reales del sector productivo bajo supervisión profesional.',
+                projects: ['Prácticas profesionales en CNT, Telconet o EEASA.', 'Resolución de incidencias en redes de proveedores reales.', 'Desarrollo del Proyecto de Grado Técnico integral.'],
+                field: 'Inserción laboral directa, Operador de Nodos de Telecomunicación y Técnico Especializado en Campo.'
+            }
+        };
+
+        function openModuleModal(id) {
+            const data = moduleDetails[id];
+            
+            document.getElementById('modal-badge').innerText = data.type;
+            document.getElementById('modal-badge').className = `px-3 py-1 rounded-sm font-black text-[10px] uppercase tracking-widest text-rt-navy ${data.typeClass}`;
+            document.getElementById('modal-hours').innerText = data.hours;
+            document.getElementById('modal-title').innerText = data.title.toUpperCase();
+            document.getElementById('modal-img').src = data.img;
+            
+            document.getElementById('modal-learn').innerText = data.learn;
+            
+            const projList = document.getElementById('modal-projects');
+            projList.innerHTML = '';
+            data.projects.forEach(p => {
+                projList.innerHTML += `<li class="flex items-start gap-2"><i class="fa-solid fa-check text-rt-cyan mt-1"></i> <span>${p}</span></li>`;
+            });
+            
+            document.getElementById('modal-field').innerText = data.field;
+
+            const modal = document.getElementById('module-modal');
+            const container = document.getElementById('modal-container');
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            container.classList.remove('scale-95');
+            container.classList.add('scale-100');
+        }
+
+        function closeModuleModal() {
+            const modal = document.getElementById('module-modal');
+            const container = document.getElementById('modal-container');
+            
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+        }
+    </script>
+    <!-- FLOATING CHATBOT AI -->
+    <div class="fixed bottom-6 right-6 z-[500] flex items-end justify-end gs_reveal">
+        
+        <!-- Chat Interface -->
+        <div id="ai-chat-interface" class="bg-rt-navy/95 backdrop-blur-xl border border-rt-cyan/30 rounded-2xl rounded-br-none mb-4 mr-4 w-[320px] shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 pointer-events-none overflow-hidden relative">
+            
+            <!-- Chat Header -->
+            <div class="bg-gradient-to-r from-rt-blue to-rt-navy p-4 border-b border-white/10 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-rt-cyan rounded-full animate-ping"></div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white uppercase tracking-widest leading-none">Guía Vocacional</h4>
+                        <span class="text-[9px] text-rt-cyan font-bold">ONLINE</span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Chat History -->
+            <div id="chat-history" class="p-4 flex-grow overflow-y-auto flex flex-col gap-3 h-[300px] scroll-smooth custom-scrollbar">
+                <!-- Mensajes inyectados vía JS -->
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-3 border-t border-white/10 bg-black/50 flex gap-2 items-center">
+                <input type="text" id="chat-input" placeholder="Pregúntame algo..." class="w-full bg-transparent border-none text-white text-sm focus:outline-none placeholder-gray-500 px-2 font-light" onkeypress="handleUserMessage(event)">
+                <button onclick="handleUserMessage()" class="text-rt-cyan hover:text-white transition-colors p-2 rounded-full hover:bg-white/5"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            
+        </div>
+        
+        <!-- Mascot Trigger -->
+        <div class="relative cursor-pointer group hover:-translate-y-2 transition-transform duration-300" onclick="toggleChat()">
+            <div class="absolute inset-0 bg-rt-cyan blur-xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity"></div>
+            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-transparent shadow-[0_0_20px_rgba(0,245,255,0.4)] overflow-hidden relative z-10 bg-[#00040A] flex items-center justify-center transition-colors duration-300" id="mascot-container">
+                <img src="MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png" class="w-full h-full object-cover object-top scale-[1.15] transition-all duration-300" alt="Asistente Virtual" id="mascot-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- CHATBOT LOGIC -->
+    <script src="js/chatbot.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 245, 255, 0.2); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 245, 255, 0.5); }
+    </style>
+</body>
+</html>
