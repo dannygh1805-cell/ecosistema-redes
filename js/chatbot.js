@@ -73,14 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // 4. Lógica de Interfaz de Usuario
 function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
-    if(menu) {
-        if(menu.classList.contains('opacity-0')) {
-            menu.classList.remove('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
-        } else {
-            menu.classList.add('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'auto'; // Restaurar scroll
-        }
+    if (!menu) return;
+
+    const isOpen = menu.style.display === 'flex';
+
+    if (isOpen) {
+        // CERRAR: fade out then hide
+        menu.style.opacity = '0';
+        menu.style.pointerEvents = 'none';
+        setTimeout(() => { menu.style.display = 'none'; }, 300);
+        document.body.style.overflow = 'auto';
+    } else {
+        // ABRIR: show then fade in
+        menu.style.display = 'flex';
+        menu.style.pointerEvents = 'auto';
+        setTimeout(() => { menu.style.opacity = '1'; }, 10);
+        document.body.style.overflow = 'hidden';
     }
 }
 
