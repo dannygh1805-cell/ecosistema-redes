@@ -634,7 +634,7 @@
         }
     </script>
     <!-- FLOATING CHATBOT AI -->
-    <div class="fixed bottom-6 right-6 z-[500] flex items-end justify-end gs_reveal">
+    <div class="fixed bottom-6 right-6 z-[500] flex items-end justify-end gs_reveal" style="pointer-events:none;">
         
         <!-- Chat Interface -->
         <div id="ai-chat-interface" class="bg-[#0B1221]/95 backdrop-blur-xl border border-rt-cyan/30 rounded-2xl rounded-br-none mb-4 mr-4 w-[320px] shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 pointer-events-none overflow-hidden relative">
@@ -665,7 +665,7 @@
         </div>
         
         <!-- Mascot Trigger -->
-        <div class="relative cursor-pointer group hover:-translate-y-2 transition-transform duration-300" onclick="toggleChat()">
+        <div class="relative cursor-pointer group hover:-translate-y-2 transition-transform duration-300" style="pointer-events:auto;" onclick="toggleChat()">
             <div class="absolute inset-0 bg-rt-cyan blur-xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity"></div>
             <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-transparent shadow-[0_0_20px_rgba(0,245,255,0.4)] overflow-hidden relative z-10 bg-[#0B1221] flex items-center justify-center transition-colors duration-300" id="mascot-container">
                 <img src="MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png" class="w-full h-full object-cover object-top scale-[1.15] transition-all duration-300" alt="Asistente Virtual" id="mascot-img">
