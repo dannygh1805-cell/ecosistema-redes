@@ -94,11 +94,11 @@
 /* ─── 1. BASE DE CONOCIMIENTO AMPLIADA ────────────────────────── */
 const botKnowledge = [
     {
-        keywords: ["inscripcion", "inscribir", "matricula", "cupo", "requisito", "entrar", "ingresar", "como entro", "quiero estudiar", "postular", "formulario", "matriz", "registro", "anotarme"],
+        keywords: ["inscripcion", "inscribir", "matricula", "cupo", "requisito", "entrar", "ingresar", "como entro", "quiero estudiar", "postular", "formulario", "matriz", "registro", "anotarme", "matricular a mi hijo", "como le inscribo", "hay cupos", "donde me registro", "link de registro", "donde mando los datos"],
         response: "El proceso oficial requiere: Estudiantes de la institución en DECE. Externos acercarse físicamente. Para anticipar tu interés, debes llenar el formulario en la <a href='recursos.html#matriz' class='text-rt-cyan underline font-bold'>Matriz Oficial de Registro</a>."
     },
     {
-        keywords: ["malla", "materias", "aprender", "enseñan", "curriculo", "estudiar", "programacion", "que se ve", "que estudian", "modulos"],
+        keywords: ["malla", "materias", "aprender", "enseñan", "curriculo", "estudiar", "programacion", "que se ve", "que estudian", "modulos", "que voy a aprender", "que clases dan", "enseñan a hackear", "arreglar computadoras", "computacion"],
         response: "El currículo oficial consta de 5 módulos (Redes, Instalación, Administración, Diseño y Sistemas). Te invito a explorar los detalles y proyectos de cada materia en la <a href='malla.html' class='text-rt-cyan underline font-bold'>Malla Curricular Interactiva</a>."
     },
     {
@@ -106,11 +106,11 @@ const botKnowledge = [
         response: "Formamos técnicos en diseño, configuración, y mantenimiento de redes (LAN, WAN, WLAN) y ciberseguridad. Puedes ver el resumen de nuestra visión en la <a href='index.html' class='text-rt-cyan underline font-bold'>Página Principal (Ecosistema)</a>."
     },
     {
-        keywords: ["costo", "precio", "pagar", "pension", "mensualidad", "dinero", "gratis", "cobran"],
+        keywords: ["costo", "precio", "pagar", "pension", "mensualidad", "dinero", "gratis", "cobran", "cuanto hay que pagar", "es particular", "cuesta", "es de pago", "hay que pagar matricula"],
         response: "¡Somos institución pública! <b>No tiene costo</b> de pensión mensual. Es bachillerato técnico gratuito con infraestructura de nivel industrial."
     },
     {
-        keywords: ["laboratorio", "equipos", "computadoras", "practica", "rack", "cisco", "router", "switch", "fibra"],
+        keywords: ["laboratorio", "equipos", "computadoras", "practica", "rack", "cisco", "router", "switch", "fibra", "tienen buen internet", "hay compus buenas", "computadoras propias", "puedo jugar", "maquina"],
         response: "¡Infraestructura grado industrial! Racks Cisco, empalmadoras de fibra óptica, servidores dedicados. Explora el <a href='laboratorio.html' class='text-rt-cyan underline'>Tour Virtual del Laboratorio</a>."
     },
     {
@@ -122,11 +122,11 @@ const botKnowledge = [
         response: "Bienvenido al Ecosistema Digital. Desde aquí puedes navegar a la <a href='malla.html' class='text-rt-cyan underline'>Malla Curricular</a>, explorar los <a href='laboratorio.html' class='text-rt-cyan underline'>Laboratorios</a> o llenar tu <a href='recursos.html#matriz' class='text-rt-cyan underline font-bold'>Matriz de Registro</a>."
     },
     {
-        keywords: ["empleo", "trabajo", "futuro", "empleabilidad", "sueldo", "salario", "ganar", "paga", "campo ocupacional"],
+        keywords: ["empleo", "trabajo", "futuro", "empleabilidad", "sueldo", "salario", "ganar", "paga", "campo ocupacional", "mi hijo consigue trabajo", "camello", "encuentro camello", "hay trabajo"],
         response: "Podrás desempeñarte como: Técnico de diseño y mantenimiento de redes, Técnico en ciberseguridad, o Asistente de infraestructura. El campo ocupacional incluye proveedores de internet (ISP), empresas de telecomunicaciones (CNT, Netlife), e instituciones públicas o privadas."
     },
     {
-        keywords: ["universidad", "instituto", "continuar", "superior", "uta", "espe", "espoch", "carrera universitaria"],
+        keywords: ["universidad", "instituto", "continuar", "superior", "uta", "espe", "espoch", "carrera universitaria", "sale con titulo de que", "sirve para la universidad", "titulo de que", "ir a la universidad despues", "puedo ir a la u"],
         response: "Tu título técnico te articula directamente con UTA, ESPE, ESPOCH e Institutos Superiores para Ingeniería en Telecomunicaciones. ¡Sin examen de acceso adicional!"
     },
     {
@@ -158,7 +158,7 @@ const botKnowledge = [
         response: "¡No es obligatorio comprar una laptop! Tenemos 2 laboratorios equipados con PCs Core i7 e internet de fibra óptica donde harás todas tus prácticas."
     },
     {
-        keywords: ["dificil", "matematicas", "programar", "no se nada", "dificultad", "empezar de cero"],
+        keywords: ["dificil", "matematicas", "programar", "no se nada", "dificultad", "empezar de cero", "es dificil redes", "es yuca", "esta frito", "es pelado", "pesado", "se me va a hacer pesado"],
         response: "¡No te preocupes! Empezamos desde cero absoluto. Aprenderás a ponchar cables y configurar routers paso a paso. La lógica matemática se desarrolla con la práctica."
     },
     {
