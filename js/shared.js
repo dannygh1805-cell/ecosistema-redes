@@ -63,20 +63,20 @@
         /* ─── 5. MOBILE BOTTOM NAVIGATION BAR ──────────────── */
         const bottomNavHTML = `
         <div class="lg:hidden fixed bottom-0 left-0 w-full z-[1000] bg-[#0B1221]/90 backdrop-blur-xl border-t border-[#00F5FF]/15 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.5)]">
-            <div class="flex justify-around items-center h-16 px-2">
-                <a href="index.html" class="flex flex-col items-center justify-center w-full h-full text-gray-500 hover:text-[#00F5FF] transition-colors nav-link-mobile" data-page="index.html">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex-1 flex flex-col items-center justify-center h-full text-gray-500 hover:text-[#00F5FF] transition-colors nav-link-mobile" data-page="index.html">
                     <i class="fa-solid fa-house text-lg mb-1"></i>
                     <span class="text-[9px] uppercase tracking-wider font-bold">Inicio</span>
                 </a>
-                <a href="malla.html" class="flex flex-col items-center justify-center w-full h-full text-gray-500 hover:text-[#00F5FF] transition-colors nav-link-mobile" data-page="malla.html">
+                <a href="malla.html" class="flex-1 flex flex-col items-center justify-center h-full text-gray-500 hover:text-[#00F5FF] transition-colors nav-link-mobile" data-page="malla.html">
                     <i class="fa-solid fa-book-open text-lg mb-1"></i>
                     <span class="text-[9px] uppercase tracking-wider font-bold">Malla</span>
                 </a>
-                <a href="laboratorio.html" class="flex flex-col items-center justify-center w-full h-full text-gray-500 hover:text-[#00F5FF] transition-colors nav-link-mobile" data-page="laboratorio.html">
+                <a href="laboratorio.html" class="flex-1 flex flex-col items-center justify-center h-full text-gray-500 hover:text-[#00F5FF] transition-colors nav-link-mobile" data-page="laboratorio.html">
                     <i class="fa-solid fa-server text-lg mb-1"></i>
                     <span class="text-[9px] uppercase tracking-wider font-bold">Lab</span>
                 </a>
-                <a href="recursos.html" class="flex flex-col items-center justify-center w-full h-full text-gray-500 hover:text-[#00F5FF] transition-colors nav-link-mobile" data-page="recursos.html">
+                <a href="recursos.html" class="flex-1 flex flex-col items-center justify-center h-full text-gray-500 hover:text-[#00F5FF] transition-colors nav-link-mobile" data-page="recursos.html">
                     <i class="fa-solid fa-folder-open text-lg mb-1"></i>
                     <span class="text-[9px] uppercase tracking-wider font-bold">Recursos</span>
                 </a>
