@@ -25,7 +25,7 @@
         }
         #chatbot-wrapper .chip-btn:hover { background: rgba(0,245,255,0.15); }
     </style>
-    <div id="chatbot-wrapper" class="fixed bottom-6 right-6 z-[500] flex flex-col items-end justify-end" style="pointer-events:none;">
+    <div id="chatbot-wrapper" class="fixed bottom-20 lg:bottom-6 right-6 z-[500] flex flex-col items-end justify-end" style="pointer-events:none;">
         <!-- Chat Interface -->
         <div id="ai-chat-interface"
              class="bg-[#0B1221]/95 backdrop-blur-xl border border-[#00F5FF]/30 rounded-2xl rounded-br-none mb-4 mr-1 shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 overflow-hidden relative"
@@ -174,14 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ─── 5. INTERFAZ DE USUARIO ─────────────────────────────────── */
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    if (!menu) return;
-    const isOpen = menu.style.display === 'flex';
-    if (isOpen) {
-        menu.style.opacity = '0';
-        menu.style.pointerEvents = 'none';
-        setTimeout(() => { menu.style.display = 'none'; }, 300);
+, 300);
         document.body.style.overflow = 'auto';
     } else {
         menu.style.display = 'flex';
