@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página No Encontrada | Redes y Telecomunicaciones</title>
+    <script src="js/shared.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #0B1221; color: #E2E8F0; font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .font-outfit { font-family: 'Outfit', sans-serif; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+        @keyframes glow { 0%,100%{box-shadow:0 0 20px rgba(0,245,255,0.3)} 50%{box-shadow:0 0 60px rgba(0,245,255,0.7)} }
+        .float { animation: float 3s ease-in-out infinite; }
+        .glow { animation: glow 2s ease-in-out infinite; }
+        .grid-bg {
+            position: fixed; inset: 0; z-index: 0;
+            background-image: linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="relative z-10 text-center px-6 max-w-2xl mx-auto">
+        <!-- Mascot -->
+        <div class="float mb-8 inline-block">
+            <div class="w-36 h-36 rounded-full border-2 border-[#00F5FF]/40 glow bg-[#112240] flex items-center justify-center overflow-hidden mx-auto">
+                <img src="MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png" class="w-full h-full object-cover object-top scale-110" alt="Asistente 404">
+            </div>
+        </div>
+
+        <!-- Error code -->
+        <div class="font-outfit font-black text-[120px] md:text-[180px] leading-none text-[#00F5FF]/10 select-none mb-0">404</div>
+
+        <div class="-mt-8 mb-6">
+            <h1 class="font-outfit font-black text-3xl md:text-5xl text-white uppercase tracking-tighter mb-4">
+                Conexión <span class="text-[#00F5FF]">Perdida</span>
+            </h1>
+            <p class="text-gray-400 text-base md:text-lg">Esta ruta no existe en nuestra red. <br>Pero no te preocupes, el asistente te puede guiar.</p>
+        </div>
+
+        <!-- Terminal-style error -->
+        <div class="bg-[#060d1a] border border-[#00F5FF]/20 rounded-2xl p-5 mb-8 text-left font-mono text-sm">
+            <div class="flex items-center gap-2 mb-3">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="text-gray-600 text-xs ml-2">rt-hub://error.log</span>
+            </div>
+            <p class="text-gray-500">$ traceroute <span class="text-[#00F5FF]">[ruta solicitada]</span></p>
+            <p class="text-red-400 mt-1">ERROR: Host no alcanzable — Timeout en nodo 404</p>
+            <p class="text-gray-500 mt-1">$ sugerencia: <span class="text-green-400">redirigir → index.html</span></p>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="index.html" class="inline-flex items-center gap-2 bg-[#00F5FF] text-[#0B1221] px-8 py-4 rounded-full font-black uppercase tracking-wider hover:scale-105 transition-transform text-sm shadow-[0_0_20px_rgba(0,245,255,0.4)]">
+                <i class="fa-solid fa-house"></i> Volver al Inicio
+            </a>
+            <a href="recursos.html#contacto" class="inline-flex items-center gap-2 border border-[#00F5FF]/30 text-[#00F5FF] px-8 py-4 rounded-full font-black uppercase tracking-wider hover:bg-[#00F5FF]/10 transition-colors text-sm">
+                <i class="fa-solid fa-envelope"></i> Contactar
+            </a>
+        </div>
+
+        <!-- Quick nav -->
+        <div class="mt-10 flex flex-wrap justify-center gap-3">
+            <a href="malla.html" class="text-xs text-gray-500 hover:text-[#00F5FF] transition-colors border border-white/10 px-4 py-2 rounded-full hover:border-[#00F5FF]/30">Malla Curricular</a>
+            <a href="laboratorio.html" class="text-xs text-gray-500 hover:text-[#00F5FF] transition-colors border border-white/10 px-4 py-2 rounded-full hover:border-[#00F5FF]/30">Infraestructura</a>
+            <a href="recursos.html" class="text-xs text-gray-500 hover:text-[#00F5FF] transition-colors border border-white/10 px-4 py-2 rounded-full hover:border-[#00F5FF]/30">Recursos</a>
+            <a href="testimonios.html" class="text-xs text-gray-500 hover:text-[#00F5FF] transition-colors border border-white/10 px-4 py-2 rounded-full hover:border-[#00F5FF]/30">Egresados</a>
+        </div>
+    </div>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

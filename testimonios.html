@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egresados | Redes y Telecomunicaciones — U.E. Guayaquil</title>
+    <meta name="description" content="Historias de éxito de egresados del Bachillerato Técnico en Redes y Telecomunicaciones de la U.E. Guayaquil. 81% de empleabilidad en empresas líderes.">
+    <meta property="og:title" content="Egresados — Redes y Telecomunicaciones U.E. Guayaquil">
+    <meta property="og:type" content="website">
+    <script src="js/shared.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'rt-navy': '#0B1221', 'rt-blue': '#112240', 'rt-cyan': '#00F5FF' },
+                    fontFamily: { outfit: ['Outfit', 'sans-serif'], inter: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: linear-gradient(160deg,#0B1221 0%,#0D1B33 50%,#0B1221 100%); background-attachment: fixed; color: #E2E8F0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass-header { background: rgba(11,18,33,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,245,255,0.08); }
+        .nav-link { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #94A3B8; transition: color .3s; }
+        .nav-link:hover, .nav-link.active { color: #00F5FF; }
+        .bento-card { background: rgba(17,34,64,0.60); backdrop-filter: blur(12px); border: 1px solid rgba(0,245,255,0.10); border-radius: 2rem; transition: all .4s; }
+        .bento-card:hover { border-color: rgba(0,245,255,.25); box-shadow: 0 8px 40px rgba(0,245,255,.08); }
+        .star { color: #00F5FF; }
+    </style>
+</head>
+<body class="selection:bg-rt-cyan selection:text-rt-navy pt-32">
+
+    <!-- NAV -->
+    <nav class="glass-header fixed top-0 w-full z-[100] px-6 lg:px-12 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" class="h-10 lg:h-12" alt="Sello UE Guayaquil">
+            <div class="flex flex-col border-l border-white/10 pl-3">
+                <span class="font-outfit font-black text-[10px] md:text-sm lg:text-lg tracking-tighter text-white leading-tight">REDES Y TELECOMUNICACIONES</span>
+                <span class="text-[6px] md:text-[8px] tracking-[0.3em] text-rt-cyan font-bold uppercase">Unidad Educativa Guayaquil</span>
+            </div>
+        </div>
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="nav-link">Ecosistema</a>
+            <a href="malla.html" class="nav-link">Malla Curricular</a>
+            <a href="laboratorio.html" class="nav-link">Infraestructura</a>
+            <a href="recursos.html" class="nav-link">Recursos</a>
+            <a href="testimonios.html" class="nav-link">Egresados</a>
+            <a href="recursos.html#contacto" class="ml-4 bg-white text-rt-navy px-6 py-2 rounded-full font-black text-xs hover:bg-rt-cyan transition-colors">Inscripciones 2026</a>
+        </div>
+        <button class="lg:hidden text-white text-2xl hover:text-rt-cyan transition-colors" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 bg-rt-navy/97 backdrop-blur-2xl z-[99999]" style="display:none;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;pointer-events:none;">
+        <button class="absolute top-8 right-8 text-white text-4xl hover:text-rt-cyan" onclick="toggleMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:1.25rem;width:100%;padding:0 2rem;box-sizing:border-box;">
+            <a href="index.html" style="display:block;width:100%;max-width:360px;text-align:center;padding:1.25rem;background:rgba(17,34,64,0.7);border:1px solid rgba(0,245,255,0.2);border-radius:1rem;color:white;font-weight:900;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;">Ecosistema</a>
+            <a href="malla.html" style="display:block;width:100%;max-width:360px;text-align:center;padding:1.25rem;background:rgba(17,34,64,0.7);border:1px solid rgba(0,245,255,0.2);border-radius:1rem;color:white;font-weight:900;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;">Malla Curricular</a>
+            <a href="laboratorio.html" style="display:block;width:100%;max-width:360px;text-align:center;padding:1.25rem;background:rgba(17,34,64,0.7);border:1px solid rgba(0,245,255,0.2);border-radius:1rem;color:white;font-weight:900;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;">Infraestructura</a>
+            <a href="recursos.html" style="display:block;width:100%;max-width:360px;text-align:center;padding:1.25rem;background:rgba(17,34,64,0.7);border:1px solid rgba(0,245,255,0.2);border-radius:1rem;color:white;font-weight:900;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;">Recursos</a>
+            <a href="testimonios.html" style="display:block;width:100%;max-width:360px;text-align:center;padding:1.25rem;background:rgba(17,34,64,0.7);border:1px solid rgba(0,245,255,0.2);border-radius:1rem;color:white;font-weight:900;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;">Egresados</a>
+            <a href="recursos.html#contacto" style="display:block;width:100%;max-width:360px;text-align:center;padding:1.25rem;background:#00F5FF;border-radius:1rem;color:#0B1221;font-weight:900;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;margin-top:0.5rem;">Inscripciones 2026</a>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 lg:px-12 pb-20">
+        <!-- HERO -->
+        <header class="text-center pt-10 mb-20">
+            <div class="inline-flex items-center gap-2 bg-rt-cyan/10 border border-rt-cyan/20 px-4 py-1.5 rounded-full mb-6">
+                <i class="fa-solid fa-star text-rt-cyan text-xs"></i>
+                <span class="text-[9px] font-black text-rt-cyan tracking-[0.2em] uppercase">Casos de Éxito Reales</span>
+            </div>
+            <h1 class="font-outfit text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
+                NUESTROS <span class="text-rt-cyan">EGRESADOS</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">Profesionales formados en la U.E. Guayaquil que hoy lideran proyectos de conectividad en Ecuador.</p>
+            <!-- STATS -->
+            <div class="grid grid-cols-3 gap-6 max-w-lg mx-auto mt-10">
+                <div class="bento-card p-6 text-center">
+                    <div class="font-outfit text-3xl font-black text-rt-cyan">81%</div>
+                    <div class="text-xs text-gray-400 mt-1">Empleabilidad</div>
+                </div>
+                <div class="bento-card p-6 text-center">
+                    <div class="font-outfit text-3xl font-black text-rt-cyan">160h</div>
+                    <div class="text-xs text-gray-400 mt-1">Prácticas FCT</div>
+                </div>
+                <div class="bento-card p-6 text-center">
+                    <div class="font-outfit text-3xl font-black text-rt-cyan">3</div>
+                    <div class="text-xs text-gray-400 mt-1">Años Formación</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- TESTIMONIAL CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+
+            <div class="bento-card p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-rt-cyan/10 border-2 border-rt-cyan/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-user text-2xl text-rt-cyan"></i>
+                    </div>
+                    <div>
+                        <div class="font-black text-white text-lg">Carlos M.</div>
+                        <div class="text-[10px] text-rt-cyan font-bold uppercase tracking-widest">Técnico en CNT EP</div>
+                    </div>
+                </div>
+                <div class="flex gap-0.5 mb-3"><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i></div>
+                <div class="text-[8px] text-rt-cyan uppercase tracking-widest font-black mb-3">Promoción 2023</div>
+                <p class="text-gray-400 text-sm leading-relaxed italic">"Los laboratorios de la U.E. Guayaquil me prepararon para trabajar desde el primer día. Configuré redes reales antes de graduarme."</p>
+                <div class="mt-5 flex gap-2 flex-wrap">
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">Fibra Óptica</span>
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">Cisco</span>
+                </div>
+            </div>
+
+            <div class="bento-card p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-rt-cyan/10 border-2 border-rt-cyan/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-user text-2xl text-rt-cyan"></i>
+                    </div>
+                    <div>
+                        <div class="font-black text-white text-lg">María P.</div>
+                        <div class="text-[10px] text-rt-cyan font-bold uppercase tracking-widest">SysAdmin en EEASA</div>
+                    </div>
+                </div>
+                <div class="flex gap-0.5 mb-3"><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i></div>
+                <div class="text-[8px] text-rt-cyan uppercase tracking-widest font-black mb-3">Promoción 2022</div>
+                <p class="text-gray-400 text-sm leading-relaxed italic">"Administro los servidores de toda la empresa. El módulo de Ciberseguridad fue clave para mi desarrollo profesional."</p>
+                <div class="mt-5 flex gap-2 flex-wrap">
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">Servidores</span>
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">Linux</span>
+                </div>
+            </div>
+
+            <div class="bento-card p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-rt-cyan/10 border-2 border-rt-cyan/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-user text-2xl text-rt-cyan"></i>
+                    </div>
+                    <div>
+                        <div class="font-black text-white text-lg">David Q.</div>
+                        <div class="text-[10px] text-rt-cyan font-bold uppercase tracking-widest">Técnico en Telconet</div>
+                    </div>
+                </div>
+                <div class="flex gap-0.5 mb-3"><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i></div>
+                <div class="text-[8px] text-rt-cyan uppercase tracking-widest font-black mb-3">Promoción 2024</div>
+                <p class="text-gray-400 text-sm leading-relaxed italic">"Realicé mis prácticas FCT en Telconet y me contrataron al terminar. El mejor bachillerato técnico de Ambato sin duda."</p>
+                <div class="mt-5 flex gap-2 flex-wrap">
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">WAN</span>
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">BGP</span>
+                </div>
+            </div>
+
+            <div class="bento-card p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-rt-cyan/10 border-2 border-rt-cyan/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-user text-2xl text-rt-cyan"></i>
+                    </div>
+                    <div>
+                        <div class="font-black text-white text-lg">Andrea L.</div>
+                        <div class="text-[10px] text-rt-cyan font-bold uppercase tracking-widest">Ing. Telecomunicaciones UTA</div>
+                    </div>
+                </div>
+                <div class="flex gap-0.5 mb-3"><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i></div>
+                <div class="text-[8px] text-rt-cyan uppercase tracking-widest font-black mb-3">Promoción 2021</div>
+                <p class="text-gray-400 text-sm leading-relaxed italic">"Mi título técnico me permitió ingresar a la UTA sin examen adicional. Ahora curso el 4to semestre de Ingeniería."</p>
+                <div class="mt-5 flex gap-2 flex-wrap">
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">UTA</span>
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">Articulación</span>
+                </div>
+            </div>
+
+            <div class="bento-card p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-rt-cyan/10 border-2 border-rt-cyan/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-user text-2xl text-rt-cyan"></i>
+                    </div>
+                    <div>
+                        <div class="font-black text-white text-lg">Luis F.</div>
+                        <div class="text-[10px] text-rt-cyan font-bold uppercase tracking-widest">Instalador ISP Freelance</div>
+                    </div>
+                </div>
+                <div class="flex gap-0.5 mb-3"><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i></div>
+                <div class="text-[8px] text-rt-cyan uppercase tracking-widest font-black mb-3">Promoción 2023</div>
+                <p class="text-gray-400 text-sm leading-relaxed italic">"Con los conocimientos de fibra óptica monté mi propio negocio. Hoy tengo 3 empleados y contratos con empresas locales."</p>
+                <div class="mt-5 flex gap-2 flex-wrap">
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">Emprendimiento</span>
+                    <span class="bg-rt-cyan/10 text-rt-cyan text-[10px] px-3 py-1 rounded-full border border-rt-cyan/20 font-bold">FTTH</span>
+                </div>
+            </div>
+
+            <!-- CTA CARD -->
+            <div class="bento-card p-8 flex flex-col items-center justify-center text-center">
+                <div class="w-20 h-20 rounded-full bg-rt-cyan/10 border-2 border-rt-cyan/30 flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-graduation-cap text-3xl text-rt-cyan"></i>
+                </div>
+                <h3 class="font-outfit font-black text-white text-2xl mb-3">Tu historia aquí</h3>
+                <p class="text-gray-400 text-sm mb-8 leading-relaxed">Inscríbete en 2026 y comienza tu camino hacia una carrera técnica de alto impacto.</p>
+                <a href="recursos.html#contacto" class="bg-rt-cyan text-rt-navy px-8 py-3 rounded-full font-black text-sm uppercase tracking-wider hover:scale-105 transition-transform inline-block shadow-[0_0_20px_rgba(0,245,255,0.3)]">Inscribirme Ahora</a>
+            </div>
+        </div>
+
+        <!-- EMPRESAS -->
+        <section class="bento-card p-12 text-center mb-20">
+            <h2 class="font-outfit text-3xl md:text-5xl font-black text-white mb-4">EMPRESAS QUE <span class="text-rt-cyan">NOS ELIGEN</span></h2>
+            <p class="text-gray-400 mb-10">Aliados estratégicos que han contratado a nuestros egresados directamente.</p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="flex flex-col items-center gap-3 p-6 bg-white/5 rounded-2xl border border-white/10 w-32 hover:border-rt-cyan/30 transition-colors">
+                    <i class="fa-solid fa-satellite-dish text-3xl text-rt-cyan"></i>
+                    <span class="font-black text-sm text-white">CNT EP</span>
+                </div>
+                <div class="flex flex-col items-center gap-3 p-6 bg-white/5 rounded-2xl border border-white/10 w-32 hover:border-rt-cyan/30 transition-colors">
+                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-rt-cyan"></i>
+                    <span class="font-black text-sm text-white">Telconet</span>
+                </div>
+                <div class="flex flex-col items-center gap-3 p-6 bg-white/5 rounded-2xl border border-white/10 w-32 hover:border-rt-cyan/30 transition-colors">
+                    <i class="fa-solid fa-bolt text-3xl text-rt-cyan"></i>
+                    <span class="font-black text-sm text-white">EEASA</span>
+                </div>
+                <div class="flex flex-col items-center gap-3 p-6 bg-white/5 rounded-2xl border border-white/10 w-32 hover:border-rt-cyan/30 transition-colors">
+                    <i class="fa-solid fa-landmark text-3xl text-rt-cyan"></i>
+                    <span class="font-black text-sm text-white">GAD Ambato</span>
+                </div>
+                <div class="flex flex-col items-center gap-3 p-6 bg-white/5 rounded-2xl border border-white/10 w-32 hover:border-rt-cyan/30 transition-colors">
+                    <i class="fa-solid fa-book-open text-3xl text-rt-cyan"></i>
+                    <span class="font-black text-sm text-white">UTA</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#060d1a] border-t border-white/10 pt-16 pb-8">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="MATERIAL PROMOCION/SELLOS INSTITUCIONALES/SELLO UNIDAD EDUCATIVA GUAYAQUIL.png" class="h-12">
+                        <div class="border-l border-white/10 pl-3">
+                            <span class="font-outfit font-black text-sm text-white block tracking-tighter">REDES Y TELECOMUNICACIONES</span>
+                            <span class="text-[9px] text-rt-cyan font-bold uppercase tracking-widest">U.E. Guayaquil</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-xs italic">"Formando el talento digital que conectará el Ecuador del mañana."</p>
+                </div>
+                <div>
+                    <h4 class="font-outfit font-black text-white uppercase tracking-widest text-xs mb-6">Navegación Rápida</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-500 text-sm hover:text-rt-cyan transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[8px] text-rt-cyan"></i> Ecosistema</a></li>
+                        <li><a href="malla.html" class="text-gray-500 text-sm hover:text-rt-cyan transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[8px] text-rt-cyan"></i> Malla Curricular</a></li>
+                        <li><a href="laboratorio.html" class="text-gray-500 text-sm hover:text-rt-cyan transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[8px] text-rt-cyan"></i> Infraestructura</a></li>
+                        <li><a href="recursos.html" class="text-gray-500 text-sm hover:text-rt-cyan transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[8px] text-rt-cyan"></i> Recursos</a></li>
+                        <li><a href="testimonios.html" class="text-rt-cyan text-sm font-bold flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[8px]"></i> Egresados</a></li>
+                        <li><a href="recursos.html#contacto" class="text-rt-cyan text-sm font-bold flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[8px]"></i> Inscripciones 2026</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-outfit font-black text-white uppercase tracking-widest text-xs mb-6">Contacto</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-rt-cyan w-4"></i><span class="text-gray-400 text-sm">032 408 970</span></div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-rt-cyan w-4"></i><span class="text-gray-400 text-sm">18h00087@gmail.com</span></div>
+                        <div class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-rt-cyan w-4 mt-0.5"></i><span class="text-gray-400 text-sm">Campus Pishilata, Ambato</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-gray-600 font-bold tracking-[0.2em] text-[9px] uppercase">Unidad Educativa Guayaquil • Egresados 2026 • AMIE 18H00087</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
