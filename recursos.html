@@ -308,41 +308,35 @@
                 <div class="relative z-10">
                     <p class="text-gray-400 text-sm mb-8 max-w-2xl">¿Te interesa estudiar Redes y Telecomunicaciones? Llena esta matriz para registrar tu interés de forma anticipada. Usaremos estos datos exclusivamente para tener conocimiento de la acogida de la carrera.</p>
                     
-                    <form action="https://formsubmit.co/pdgabilanes@gmail.com" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Configuraciones de FormSubmit -->
-                        <input type="hidden" name="_subject" value="Nuevo Registro de Interés - Redes y Telecomunicaciones">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://dannygh1805-cell.github.io/ecosistema-redes/recursos.html">
-
+                    <form onsubmit="submitToWhatsApp(event)" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="col-span-1 md:col-span-2">
                             <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Nombres y Apellidos Completos del Estudiante</label>
-                            <input type="text" name="Nombre" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan focus:ring-1 focus:ring-rt-cyan transition-all">
+                            <input type="text" id="wa_nombre" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan focus:ring-1 focus:ring-rt-cyan transition-all">
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Número de Cédula</label>
-                            <input type="text" name="Cedula" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
+                            <input type="text" id="wa_cedula" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Institución Educativa de Origen</label>
-                            <input type="text" name="Institucion_Origen" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
+                            <input type="text" id="wa_institucion" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Teléfono / WhatsApp de Contacto</label>
-                            <input type="tel" name="Telefono" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
+                            <input type="tel" id="wa_telefono" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Correo Electrónico</label>
-                            <input type="email" name="Correo" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
+                            <input type="email" id="wa_correo" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
                         </div>
 
                         <div class="col-span-1 md:col-span-2 mt-4">
-                            <button type="submit" class="w-full bg-rt-cyan text-rt-navy font-black text-sm uppercase tracking-widest py-4 rounded-xl hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,245,255,0.3)]">
-                                Enviar Matriz de Interés <i class="fa-solid fa-paper-plane ml-2"></i>
+                            <button type="submit" class="w-full bg-[#25D366] text-white font-black text-sm uppercase tracking-widest py-4 rounded-xl hover:bg-[#20BD5C] transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(37,211,102,0.3)]">
+                                Enviar Matriz por WhatsApp <i class="fa-brands fa-whatsapp text-lg ml-2"></i>
                             </button>
                         </div>
                     </form>
@@ -441,6 +435,37 @@
                 console.error('Failed to copy text: ', err);
                 alert("No se pudo copiar el texto. Inténtalo manualmente.");
             });
+        }
+
+        // Enviar Matriz de Interés a WhatsApp
+        function submitToWhatsApp(event) {
+            event.preventDefault(); // Evita recargar la página
+
+            // Obtener los datos del formulario
+            const nombre = document.getElementById('wa_nombre').value.trim();
+            const cedula = document.getElementById('wa_cedula').value.trim();
+            const institucion = document.getElementById('wa_institucion').value.trim();
+            const telefono = document.getElementById('wa_telefono').value.trim();
+            const correo = document.getElementById('wa_correo').value.trim();
+
+            // Construir el mensaje formateado
+            const mensaje = `Hola, me gustaría registrar mi interés anticipado en la carrera de *Redes y Telecomunicaciones (2026)*. A continuación envío mi matriz de datos:%0A%0A`
+                          + `👤 *Nombre:* ${nombre}%0A`
+                          + `🪪 *Cédula:* ${cedula}%0A`
+                          + `🏫 *Institución de Origen:* ${institucion}%0A`
+                          + `📱 *Teléfono:* ${telefono}%0A`
+                          + `✉️ *Correo:* ${correo}%0A%0A`
+                          + `Quedo atento/a a cualquier información adicional sobre el proceso de admisión.`;
+
+            // Número de destino
+            const waNumber = "5930324089700";
+
+            // Redirigir a WhatsApp
+            const waLink = `https://wa.me/${waNumber}?text=${mensaje}`;
+            window.open(waLink, '_blank');
+
+            // Limpiar formulario opcionalmente
+            event.target.reset();
         }
     </script>
     <!-- CHATBOT (inyectado dinámicamente por chatbot.js) -->
