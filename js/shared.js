@@ -35,18 +35,19 @@
         }, { passive: true });
 
         /* ─── 3. PAGE TRANSITIONS (fade-out on navigate) ────── */
-        document.addEventListener('click', function (e) {
-            const link = e.target.closest('a[href]');
-            if (!link) return;
-            const href = link.getAttribute('href');
-            if (!href) return;
-            if (href.startsWith('#')) return;
-            if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
-            if (link.getAttribute('target') === '_blank') return;
-            e.preventDefault();
-            document.body.style.opacity = '0';
-            setTimeout(() => { window.location.href = href; }, 380);
-        });
+        // Removed JS interceptor to ensure native navigation works flawlessly across all devices/local environments.
+        // document.addEventListener('click', function (e) {
+        //     const link = e.target.closest('a[href]');
+        //     if (!link) return;
+        //     const href = link.getAttribute('href');
+        //     if (!href) return;
+        //     if (href.startsWith('#')) return;
+        //     if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        //     if (link.getAttribute('target') === '_blank') return;
+        //     e.preventDefault();
+        //     document.body.style.opacity = '0';
+        //     setTimeout(() => { window.location.href = href; }, 380);
+        // });
 
         /* ─── 4. SET ACTIVE NAV LINK (DESKTOP) ─────────────── */
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
