@@ -98,8 +98,12 @@ const botKnowledge = [
         response: "¡Excelente decisión! Las inscripciones para 2026 tienen cupos limitados. Los requisitos son: cédula, libreta de calificaciones y foto. Contacta directo en nuestra <a href='recursos.html#contacto' class='text-rt-cyan underline'>Sección de Inscripciones</a>."
     },
     {
-        keywords: ["malla", "materias", "aprender", "enseñan", "curriculo", "estudiar", "programacion", "que se ve", "que estudian"],
-        response: "La malla incluye: Diseño de Redes, Administración de Servidores, Ciberseguridad, Fibra Óptica y Prácticas FCT. 100% práctico. Vélo completo en la <a href='malla.html' class='text-rt-cyan underline'>Malla Curricular</a>."
+        keywords: ["malla", "materias", "aprender", "enseñan", "curriculo", "estudiar", "programacion", "que se ve", "que estudian", "modulos"],
+        response: "El currículo oficial consta de 5 módulos formativos: 1. Redes y Comunicación de Datos. 2. Instalación y Configuración de Redes. 3. Administración de Redes. 4. Diseño y Planificación de Infraestructura. 5. Sistemas Digitales y Telecomunicaciones."
+    },
+    {
+        keywords: ["que es", "de que trata", "que hacen", "perfil profesional", "para que sirve"],
+        response: "La figura profesional busca formar técnicos con competencias en diseño, instalación, configuración, administración y mantenimiento de redes cableadas e inalámbricas (LAN, WAN, WLAN), así como integración de servicios de telecomunicaciones y ciberseguridad."
     },
     {
         keywords: ["costo", "precio", "pagar", "pension", "mensualidad", "dinero", "gratis", "cobran"],
@@ -114,8 +118,8 @@ const botKnowledge = [
         response: "¡Hola! Soy el asistente de Redes y Telecomunicaciones. Pregúntame sobre inscripciones, materias, laboratorios, horarios o salidas laborales 😊"
     },
     {
-        keywords: ["empleo", "trabajo", "futuro", "empleabilidad", "sueldo", "salario", "ganar", "paga"],
-        response: "¡81.1% de empleabilidad en Ambato! Sectores: CNT EP, Telconet, Netlife, EEASA, empresas TIC. Salarios técnicos desde $600 USD mensuales con experiencia."
+        keywords: ["empleo", "trabajo", "futuro", "empleabilidad", "sueldo", "salario", "ganar", "paga", "campo ocupacional"],
+        response: "Podrás desempeñarte como: Técnico de diseño y mantenimiento de redes, Técnico en ciberseguridad, o Asistente de infraestructura. El campo ocupacional incluye proveedores de internet (ISP), empresas de telecomunicaciones (CNT, Netlife), e instituciones públicas o privadas."
     },
     {
         keywords: ["universidad", "instituto", "continuar", "superior", "uta", "espe", "espoch", "carrera universitaria"],
