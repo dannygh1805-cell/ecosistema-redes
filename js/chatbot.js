@@ -139,7 +139,7 @@ const botKnowledge = [
     },
     {
         keywords: ["horario", "turno", "mañana", "tarde", "clases", "jornada"],
-        response: "La especialidad técnica se imparte en <b>Jornada Matutina</b> (07:00 a 13:00) para aprovechar mejor los laboratorios. Las prácticas FCT se ajustan al horario de la empresa."
+        response: "La especialidad técnica se imparte en <b>Jornada Vespertina</b> (13:00 a 19:00) para aprovechar mejor los laboratorios. Las prácticas FCT se ajustan al horario de la empresa."
     },
     {
         keywords: ["uniforme", "ropa", "vestimenta", "diario", "cultura fisica"],
