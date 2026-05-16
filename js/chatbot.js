@@ -94,8 +94,8 @@
 /* ─── 1. BASE DE CONOCIMIENTO AMPLIADA ────────────────────────── */
 const botKnowledge = [
     {
-        keywords: ["inscripcion", "inscribir", "matricula", "cupo", "requisito", "entrar", "ingresar", "como entro", "quiero estudiar", "postular"],
-        response: "Para estudiantes de la institución: entrevista en el DECE institucional. Instituciones enlazadas: en su respectivo DECE. Otras instituciones: acercarse al DECE de nuestro campus y estar pendientes del sistema del Ministerio de Educación. Más detalles en la <a href='recursos.html#contacto' class='text-rt-cyan underline'>Sección de Inscripciones</a>."
+        keywords: ["inscripcion", "inscribir", "matricula", "cupo", "requisito", "entrar", "ingresar", "como entro", "quiero estudiar", "postular", "formulario", "matriz", "registro", "anotarme"],
+        response: "El proceso oficial requiere: Estudiantes de la institución en DECE. Externos acercarse físicamente. Para anticipar tu interés, debes llenar el formulario en la <a href='recursos.html#matriz' class='text-rt-cyan underline font-bold'>Matriz Oficial de Registro</a>."
     },
     {
         keywords: ["malla", "materias", "aprender", "enseñan", "curriculo", "estudiar", "programacion", "que se ve", "que estudian", "modulos"],
