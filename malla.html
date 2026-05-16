@@ -661,46 +661,6 @@
             setTimeout(() => { modal.style.display = 'none'; }, 400);
         }
     </script>
-    <!-- CHATBOT (inyectado dinámicamente por chatbot.js) -->
-    <div class="hidden">
-        
-        <!-- Chat Interface -->
-        <div id="ai-chat-interface" class="bg-[#0B1221]/95 backdrop-blur-xl border border-rt-cyan/30 rounded-2xl rounded-br-none mb-4 mr-4 w-[320px] shadow-[0_0_30px_rgba(0,245,255,0.15)] flex flex-col transform transition-all duration-500 opacity-0 translate-y-4 pointer-events-none overflow-hidden relative">
-            
-            <!-- Chat Header -->
-            <div class="bg-gradient-to-r from-rt-blue to-rt-navy p-4 border-b border-white/10 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-2 h-2 bg-rt-cyan rounded-full animate-ping"></div>
-                    <div>
-                        <h4 class="text-xs font-bold text-white uppercase tracking-widest leading-none">Guía Vocacional</h4>
-                        <span class="text-[9px] text-rt-cyan font-bold">ONLINE</span>
-                    </div>
-                </div>
-                <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <!-- Chat History -->
-            <div id="chat-history" class="p-4 flex-grow overflow-y-auto flex flex-col gap-3 h-[300px] scroll-smooth custom-scrollbar">
-                <!-- Mensajes inyectados vía JS -->
-            </div>
-
-            <!-- Chat Input -->
-            <div class="p-3 border-t border-white/10 bg-[#060d1a]/50 flex gap-2 items-center">
-                <input type="text" id="chat-input" placeholder="Pregúntame algo..." class="w-full bg-transparent border-none text-white text-sm focus:outline-none placeholder-gray-500 px-2 font-light" onkeypress="handleUserMessage(event)">
-                <button onclick="handleUserMessage()" class="text-rt-cyan hover:text-white transition-colors p-2 rounded-full hover:bg-white/5"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-            
-        </div>
-        
-        <!-- Mascot Trigger -->
-        <div class="relative cursor-pointer group hover:-translate-y-2 transition-transform duration-300" style="pointer-events:auto;" onclick="toggleChat()">
-            <div class="absolute inset-0 bg-rt-cyan blur-xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity"></div>
-            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-transparent shadow-[0_0_20px_rgba(0,245,255,0.4)] overflow-hidden relative z-10 bg-[#0B1221] flex items-center justify-center transition-colors duration-300" id="mascot-container">
-                <img src="MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png" class="w-full h-full object-cover object-top scale-[1.15] transition-all duration-300" alt="Asistente Virtual" id="mascot-img">
-            </div>
-        </div>
-    </div>
-
     <!-- CHATBOT LOGIC -->
     <script src="js/chatbot.js?v=3.2"></script>
     <style>
