@@ -99,11 +99,11 @@ const botKnowledge = [
     },
     {
         keywords: ["malla", "materias", "aprender", "enseñan", "curriculo", "estudiar", "programacion", "que se ve", "que estudian", "modulos"],
-        response: "El currículo oficial consta de 5 módulos formativos: 1. Redes y Comunicación de Datos. 2. Instalación y Configuración de Redes. 3. Administración de Redes. 4. Diseño y Planificación de Infraestructura. 5. Sistemas Digitales y Telecomunicaciones."
+        response: "El currículo oficial consta de 5 módulos (Redes, Instalación, Administración, Diseño y Sistemas). Te invito a explorar los detalles y proyectos de cada materia en la <a href='malla.html' class='text-rt-cyan underline font-bold'>Malla Curricular Interactiva</a>."
     },
     {
         keywords: ["que es", "de que trata", "que hacen", "perfil profesional", "para que sirve"],
-        response: "La figura profesional busca formar técnicos con competencias en diseño, instalación, configuración, administración y mantenimiento de redes cableadas e inalámbricas (LAN, WAN, WLAN), así como integración de servicios de telecomunicaciones y ciberseguridad."
+        response: "Formamos técnicos en diseño, configuración, y mantenimiento de redes (LAN, WAN, WLAN) y ciberseguridad. Puedes ver el resumen de nuestra visión en la <a href='index.html' class='text-rt-cyan underline font-bold'>Página Principal (Ecosistema)</a>."
     },
     {
         keywords: ["costo", "precio", "pagar", "pension", "mensualidad", "dinero", "gratis", "cobran"],
@@ -116,6 +116,10 @@ const botKnowledge = [
     {
         keywords: ["hola", "buenas", "saludos", "buenos dias", "buenas tardes", "buenas noches", "hi", "hey"],
         response: "¡Hola! Soy el asistente de Redes y Telecomunicaciones. Pregúntame sobre inscripciones, materias, laboratorios, horarios o salidas laborales 😊"
+    },
+    {
+        keywords: ["ecosistema", "inicio", "principal", "portal", "menu", "navegar", "donde estoy", "ver todo", "tour"],
+        response: "Bienvenido al Ecosistema Digital. Desde aquí puedes navegar a la <a href='malla.html' class='text-rt-cyan underline'>Malla Curricular</a>, explorar los <a href='laboratorio.html' class='text-rt-cyan underline'>Laboratorios</a> o llenar tu <a href='recursos.html#matriz' class='text-rt-cyan underline font-bold'>Matriz de Registro</a>."
     },
     {
         keywords: ["empleo", "trabajo", "futuro", "empleabilidad", "sueldo", "salario", "ganar", "paga", "campo ocupacional"],
