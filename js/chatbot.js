@@ -174,15 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ─── 5. INTERFAZ DE USUARIO ─────────────────────────────────── */
-, 300);
-        document.body.style.overflow = 'auto';
-    } else {
-        menu.style.display = 'flex';
-        menu.style.pointerEvents = 'auto';
-        setTimeout(() => { menu.style.opacity = '1'; }, 10);
-        document.body.style.overflow = 'hidden';
-    }
-}
 
 function toggleChat() {
     const chatInterface = document.getElementById('ai-chat-interface');
