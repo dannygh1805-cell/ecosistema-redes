@@ -305,38 +305,17 @@
                 <div class="relative z-10">
                     <p class="text-gray-400 text-sm mb-8 max-w-2xl">¿Te interesa estudiar Redes y Telecomunicaciones? Llena esta matriz para registrar tu interés de forma anticipada. Usaremos estos datos exclusivamente para tener conocimiento de la acogida de la carrera.</p>
                     
-                    <form onsubmit="submitToEmail(event)" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="col-span-1 md:col-span-2">
-                            <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Nombres y Apellidos Completos del Estudiante</label>
-                            <input type="text" id="wa_nombre" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan focus:ring-1 focus:ring-rt-cyan transition-all">
+                    <div class="bg-[#060d1a]/50 border border-white/10 rounded-2xl p-8 md:p-12 text-center">
+                        <div class="w-20 h-20 bg-rt-cyan/10 rounded-full flex items-center justify-center border border-rt-cyan/30 mx-auto mb-6">
+                            <i class="fa-solid fa-table-list text-4xl text-rt-cyan"></i>
                         </div>
-
-                        <div>
-                            <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Número de Cédula</label>
-                            <input type="text" id="wa_cedula" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
-                        </div>
-
-                        <div>
-                            <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Institución Educativa de Origen</label>
-                            <input type="text" id="wa_institucion" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
-                        </div>
-
-                        <div>
-                            <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Teléfono / WhatsApp de Contacto</label>
-                            <input type="tel" id="wa_telefono" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
-                        </div>
-
-                        <div>
-                            <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Correo Electrónico</label>
-                            <input type="email" id="wa_correo" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan transition-all">
-                        </div>
-
-                        <div class="col-span-1 md:col-span-2 mt-4">
-                            <button type="submit" class="w-full bg-rt-cyan text-rt-navy font-black text-sm uppercase tracking-widest py-4 rounded-xl hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,245,255,0.3)]">
-                                Enviar Matriz por Correo <i class="fa-solid fa-envelope text-lg ml-2"></i>
-                            </button>
-                        </div>
-                    </form>
+                        <h3 class="font-outfit text-3xl font-black text-white mb-4 uppercase">Matriz Oficial de Registro</h3>
+                        <p class="text-gray-400 text-sm mb-8 max-w-md mx-auto">Para mayor seguridad y agilidad, estamos gestionando las matrices de interés a través del sistema oficial de Google Forms. Tu información se registrará directamente en la base de datos de la coordinación.</p>
+                        
+                        <a href="https://forms.gle/Rkt42LKD4j7EVtsV9" target="_blank" class="inline-flex items-center justify-center w-full md:w-auto bg-rt-cyan text-rt-navy font-black text-sm uppercase tracking-widest px-10 py-4 rounded-xl hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,245,255,0.3)]">
+                            Llenar Matriz Oficial <i class="fa-solid fa-arrow-up-right-from-square ml-3"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -433,37 +412,6 @@
             });
         }
 
-        // Enviar Matriz de Interés por Correo (Mailto)
-        function submitToEmail(event) {
-            event.preventDefault(); // Evita recargar la página
-
-            // Obtener los datos del formulario
-            const nombre = document.getElementById('wa_nombre').value.trim();
-            const cedula = document.getElementById('wa_cedula').value.trim();
-            const institucion = document.getElementById('wa_institucion').value.trim();
-            const telefono = document.getElementById('wa_telefono').value.trim();
-            const correo = document.getElementById('wa_correo').value.trim();
-
-            // Configurar correo y asunto
-            const emailDestino = "pdgabilanes@gmail.com";
-            const subject = "Nueva Matriz de Interés - Redes y Telecomunicaciones";
-
-            // Construir el mensaje de correo (texto plano básico que soporta mailto)
-            const body = `Hola, me gustaría registrar mi interés anticipado en la carrera de Redes y Telecomunicaciones (2026). A continuación envío mi matriz de datos:\n\n`
-                       + `Nombre: ${nombre}\n`
-                       + `Cédula: ${cedula}\n`
-                       + `Institución de Origen: ${institucion}\n`
-                       + `Teléfono / Contacto: ${telefono}\n`
-                       + `Correo de contacto: ${correo}\n\n`
-                       + `Quedo atento/a a cualquier información adicional sobre el proceso de admisión.`;
-
-            // Ejecutar el mailto
-            const mailtoLink = `mailto:${emailDestino}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
-
-            // Limpiar formulario
-            event.target.reset();
-        }
     </script>
     <!-- CHATBOT (inyectado dinámicamente por chatbot.js) -->
     <script src="js/chatbot.js?v=3.3"></script>
