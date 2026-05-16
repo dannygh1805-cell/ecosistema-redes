@@ -55,6 +55,12 @@
         </div>
         <!-- Mascot Trigger -->
         <div class="relative cursor-pointer group" style="pointer-events:auto;" onclick="toggleChat()">
+            <!-- Tooltip Proactivo -->
+            <div id="mascot-tooltip" class="absolute bottom-full right-0 mb-3 bg-[#00F5FF] text-[#0B1221] text-xs font-black px-4 py-2.5 rounded-2xl rounded-br-none shadow-[0_0_20px_rgba(0,245,255,0.6)] whitespace-nowrap opacity-0 pointer-events-none transition-all duration-500 transform translate-y-2 z-50">
+                ¡Hola! ¿Dudas sobre la carrera? 👋
+                <div class="absolute -bottom-1.5 right-4 w-3 h-3 bg-[#00F5FF] transform rotate-45"></div>
+            </div>
+            
             <div style="position:absolute;inset:0;background:#00F5FF;filter:blur(1.5rem);border-radius:50%;opacity:0.3;transition:opacity 0.3s;" class="mascot-glow"></div>
             <div id="mascot-container" class="relative z-10 overflow-hidden"
                  style="width:5rem;height:5rem;border-radius:50%;border:2px solid transparent;box-shadow:0 0 20px rgba(0,245,255,0.4);background:#0B1221;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s;">
@@ -105,7 +111,7 @@ const botKnowledge = [
     },
     {
         keywords: ["hola", "buenas", "saludos", "buenos dias", "buenas tardes", "buenas noches", "hi", "hey"],
-        response: "¡Hola! Soy el asistente de Redes y Telecomunicaciones. Pregúntame sobre inscripciones, materias, laboratorios o salidas laborales 😊"
+        response: "¡Hola! Soy el asistente de Redes y Telecomunicaciones. Pregúntame sobre inscripciones, materias, laboratorios, horarios o salidas laborales 😊"
     },
     {
         keywords: ["empleo", "trabajo", "futuro", "empleabilidad", "sueldo", "salario", "ganar", "paga"],
@@ -114,10 +120,6 @@ const botKnowledge = [
     {
         keywords: ["universidad", "instituto", "continuar", "superior", "uta", "espe", "espoch", "carrera universitaria"],
         response: "Tu título técnico te articula directamente con UTA, ESPE, ESPOCH e Institutos Superiores para Ingeniería en Telecomunicaciones. ¡Sin examen de acceso adicional!"
-    },
-    {
-        keywords: ["egresado", "graduado", "exalumno", "testimonio", "experiencia", "caso de exito"],
-        response: "Nuestros egresados están en CNT EP, EEASA, Telconet y empresas del país. Conoce sus historias en <a href='testimonios.html' class='text-rt-cyan underline'>Egresados</a>."
     },
     {
         keywords: ["duracion", "cuanto dura", "años", "tiempo", "semestre", "bachillerato"],
@@ -134,17 +136,41 @@ const botKnowledge = [
     {
         keywords: ["donde queda", "ubicacion", "direccion", "campus", "pishilata", "como llegar"],
         response: "📍 Campus Pishilata: Av. Bolivariana y Francisco Navarrete, Ambato. <a href='https://www.google.com/maps?q=Av+Bolivariana+Francisco+Navarrete+Ambato+Ecuador' target='_blank' class='text-rt-cyan underline'>Ver en Maps</a>."
+    },
+    {
+        keywords: ["horario", "turno", "mañana", "tarde", "clases", "jornada"],
+        response: "La especialidad técnica se imparte en <b>Jornada Matutina</b> (07:00 a 13:00) para aprovechar mejor los laboratorios. Las prácticas FCT se ajustan al horario de la empresa."
+    },
+    {
+        keywords: ["uniforme", "ropa", "vestimenta", "diario", "cultura fisica"],
+        response: "Se utilizan los uniformes oficiales de la U.E. Guayaquil (Parada, Diario y Cultura Física). Para el laboratorio de fibra óptica, proveemos mandiles de seguridad gratuitos."
+    },
+    {
+        keywords: ["laptop", "computadora", "necesito comprar", "internet", "pc"],
+        response: "¡No es obligatorio comprar una laptop! Tenemos 2 laboratorios equipados con PCs Core i7 e internet de fibra óptica donde harás todas tus prácticas."
+    },
+    {
+        keywords: ["dificil", "matematicas", "programar", "no se nada", "dificultad", "empezar de cero"],
+        response: "¡No te preocupes! Empezamos desde cero absoluto. Aprenderás a ponchar cables y configurar routers paso a paso. La lógica matemática se desarrolla con la práctica."
+    },
+    {
+        keywords: ["titulo", "bachiller", "me gradúo", "titulacion"],
+        response: "Te gradúas como <b>Bachiller Técnico en Redes y Telecomunicaciones</b>. Es un título oficial del Ministerio de Educación que te permite trabajar inmediatamente o ir a la universidad."
+    },
+    {
+        keywords: ["profesores", "docentes", "rector", "coordinador", "autoridades"],
+        response: "Contamos con un equipo de Ingenieros en Telecomunicaciones y Sistemas certificados, liderados por expertos en infraestructura de red y ciberseguridad."
     }
 ];
 
-const fallbackResponse = "Entiendo. Para consultas específicas, contacta directo a la coordinación en la <a href='recursos.html#contacto' class='text-rt-cyan underline'>Sección de Contacto</a>. ¿Algo más sobre la carrera?";
+const fallbackResponse = "Entiendo. Para consultas específicas sobre admisiones o visitas, contacta directo a la coordinación en la <a href='recursos.html#contacto' class='text-rt-cyan underline'>Sección de Contacto</a>. ¿Tienes alguna otra duda sobre la carrera?";
 
 /* ─── 2. CHIPS DE RESPUESTA RÁPIDA ───────────────────────────── */
 const quickChips = [
+    { label: "🎓 ¿Qué título obtengo?", text: "titulo" },
+    { label: "⏰ Horarios", text: "horario" },
+    { label: "💻 ¿Necesito Laptop?", text: "laptop" },
     { label: "💼 Empleabilidad", text: "empleabilidad" },
-    { label: "📚 Materias", text: "materias" },
-    { label: "🔬 Laboratorio", text: "laboratorio" },
-    { label: "✍️ Inscripción", text: "inscripcion" },
 ];
 
 /* ─── 3. ESTADO DEL CHAT ─────────────────────────────────────── */
@@ -161,13 +187,24 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const mc = document.getElementById('mascot-container');
                 if (mc) { mc.style.animation = 'bounce 0.5s 4'; }
+                
+                const tooltip = document.getElementById('mascot-tooltip');
+                if (tooltip) {
+                    tooltip.classList.remove('opacity-0', 'translate-y-2');
+                    tooltip.classList.add('opacity-100', 'translate-y-0');
+                    setTimeout(() => {
+                        if(tooltip) {
+                            tooltip.classList.remove('opacity-100', 'translate-y-0');
+                            tooltip.classList.add('opacity-0', 'translate-y-2');
+                        }
+                    }, 8000);
+                }
             }
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             let initialMsg = "¿Sabías que Redes tiene un 81.1% de empleabilidad? <b>Escríbeme tu pregunta</b> o elige un tema:";
             if (currentPage.includes('malla')) initialMsg = "¡Explora cada módulo de la carrera! <b>Pregúntame sobre materias o prácticas.</b>";
             if (currentPage.includes('laboratorio')) initialMsg = "¡Infraestructura de nivel industrial! <b>¿Tienes dudas sobre los equipos o inscripción?</b>";
             if (currentPage.includes('recursos')) initialMsg = "Estás en la sección de documentos e inscripción. <b>¿En qué puedo ayudarte?</b>";
-            if (currentPage.includes('testimonios')) initialMsg = "¡Nuestros egresados hablan por sí solos! <b>¿Te gustaría saber cómo inscribirte?</b>";
             simulateBotTyping(initialMsg, true);
         }
     }, 5000);
@@ -179,7 +216,15 @@ function toggleChat() {
     const chatInterface = document.getElementById('ai-chat-interface');
     const mascotContainer = document.getElementById('mascot-container');
     const mascotImg = document.getElementById('mascot-img');
+    const tooltip = document.getElementById('mascot-tooltip');
+    
     if (!chatInterface) return;
+
+    // Ocultar tooltip si se abre el chat
+    if (tooltip) {
+        tooltip.classList.remove('opacity-100', 'translate-y-0');
+        tooltip.classList.add('opacity-0', 'translate-y-2');
+    }
 
     const staticSrc = 'MATERIAL PROMOCION/MASCOTA REDES/MASCOTA REDES.png';
     const gifSrc = 'MATERIAL PROMOCION/GIF PARA GUIA/WhatsApp Video 2026-05-13 at 23.10.53.gif';
