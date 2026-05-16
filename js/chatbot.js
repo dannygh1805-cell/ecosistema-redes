@@ -95,7 +95,7 @@
 const botKnowledge = [
     {
         keywords: ["inscripcion", "inscribir", "matricula", "cupo", "requisito", "entrar", "ingresar", "como entro", "quiero estudiar", "postular"],
-        response: "¡Excelente decisión! Las inscripciones para 2026 tienen cupos limitados. Los requisitos son: cédula, libreta de calificaciones y foto. Contacta directo en nuestra <a href='recursos.html#contacto' class='text-rt-cyan underline'>Sección de Inscripciones</a>."
+        response: "Para estudiantes de la institución: entrevista en el DECE institucional. Instituciones enlazadas: en su respectivo DECE. Otras instituciones: acercarse al DECE de nuestro campus y estar pendientes del sistema del Ministerio de Educación. Más detalles en la <a href='recursos.html#contacto' class='text-rt-cyan underline'>Sección de Inscripciones</a>."
     },
     {
         keywords: ["malla", "materias", "aprender", "enseñan", "curriculo", "estudiar", "programacion", "que se ve", "que estudian", "modulos"],
