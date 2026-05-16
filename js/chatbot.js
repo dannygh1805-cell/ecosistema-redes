@@ -173,13 +173,68 @@ const botKnowledge = [
 
 const fallbackResponse = "Entiendo. Para consultas específicas sobre admisiones o visitas, contacta directo a la coordinación en la <a href='recursos.html#contacto' class='text-rt-cyan underline'>Sección de Contacto</a>. ¿Tienes alguna otra duda sobre la carrera?";
 
-/* ─── 2. CHIPS DE RESPUESTA RÁPIDA ───────────────────────────── */
-const quickChips = [
+/* ─── 2. CHIPS DE RESPUESTA RÁPIDA (por página y contexto) ───── */
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+// Chips genéricos globales (fallback)
+const chipsGeneral = [
     { label: "🎓 ¿Qué título obtengo?", text: "titulo" },
     { label: "⏰ Horarios", text: "horario" },
     { label: "💻 ¿Necesito Laptop?", text: "laptop" },
     { label: "💼 Empleabilidad", text: "empleabilidad" },
+    { label: "📋 Inscribirme", text: "formulario" },
+    { label: "💰 ¿Es gratis?", text: "gratis" },
 ];
+
+// Chips para Inicio (index.html) - Padres y estudiantes que llegan por primera vez
+const chipsIndex = [
+    { label: "🤔 ¿De qué trata?", text: "de que trata" },
+    { label: "💰 ¿Es gratis?", text: "gratis" },
+    { label: "📋 Quiero inscribirme", text: "formulario" },
+    { label: "🏫 ¿Dónde queda?", text: "ubicacion" },
+    { label: "⏰ Horarios", text: "horario" },
+    { label: "🎓 ¿Qué título obtengo?", text: "titulo" },
+];
+
+// Chips para Malla Curricular - Estudiantes curiosos por las materias
+const chipsMalla = [
+    { label: "📡 ¿Qué módulos hay?", text: "modulos" },
+    { label: "🔧 ¿Es muy difícil?", text: "dificil" },
+    { label: "🏢 Prácticas en empresa", text: "practicas" },
+    { label: "🌐 Cisco y Certificación", text: "cisco" },
+    { label: "🎓 ¿Qué título obtengo?", text: "titulo" },
+    { label: "📋 Inscribirme", text: "formulario" },
+];
+
+// Chips para Laboratorio - Estudiantes entusiastas de la tecnología
+const chipsLaboratorio = [
+    { label: "🖥️ ¿Qué equipos usan?", text: "equipos" },
+    { label: "📡 ¿Usan Cisco real?", text: "cisco" },
+    { label: "💻 ¿Necesito mi PC?", text: "laptop" },
+    { label: "🌐 ¿Tienen internet?", text: "internet" },
+    { label: "📋 Quiero inscribirme", text: "formulario" },
+    { label: "💼 ¿Dónde trabajo después?", text: "trabajo" },
+];
+
+// Chips para Recursos - Padres listos para inscribir
+const chipsRecursos = [
+    { label: "📋 Llenar el formulario", text: "formulario" },
+    { label: "🏫 Ya soy del plantel", text: "inscripcion" },
+    { label: "🔗 Soy de otra institución", text: "como entro" },
+    { label: "📞 Datos de contacto", text: "ubicacion" },
+    { label: "⏰ Horarios de atención", text: "horario" },
+    { label: "💰 ¿Cuánto cuesta?", text: "costo" },
+];
+
+// Selector dinámico de chips basado en la página actual
+function getPageChips() {
+    if (currentPage.includes('malla')) return chipsMalla;
+    if (currentPage.includes('laboratorio')) return chipsLaboratorio;
+    if (currentPage.includes('recursos')) return chipsRecursos;
+    if (currentPage.includes('index') || currentPage === '' || currentPage === '/') return chipsIndex;
+    return chipsGeneral;
+}
+const quickChips = getPageChips();
 
 /* ─── 3. ESTADO DEL CHAT ─────────────────────────────────────── */
 let isChatOpen = false;
@@ -208,11 +263,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 8000);
                 }
             }
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            let initialMsg = "¿Sabías que Redes tiene un 81.1% de empleabilidad? <b>Escríbeme tu pregunta</b> o elige un tema:";
-            if (currentPage.includes('malla')) initialMsg = "¡Explora cada módulo de la carrera! <b>Pregúntame sobre materias o prácticas.</b>";
-            if (currentPage.includes('laboratorio')) initialMsg = "¡Infraestructura de nivel industrial! <b>¿Tienes dudas sobre los equipos o inscripción?</b>";
-            if (currentPage.includes('recursos')) initialMsg = "Estás en la sección de documentos e inscripción. <b>¿En qué puedo ayudarte?</b>";
+            const pageChips = getPageChips();
+            let initialMsg = "¿Sabías que Redes tiene un <b>81.1% de empleabilidad</b>? Escíbeme tu pregunta o elige un tema:";
+            if (currentPage.includes('malla')) initialMsg = "Aquí está todo lo que aprenderás. <b>Pregúntame sobre las materias, prácticas o el título que obtendrás.</b>";
+            if (currentPage.includes('laboratorio')) initialMsg = "<b>¿Impresionante, verdad?</b> Esta será tu aula de trabajo real. ¿Te animas? Escríbeme tu duda.";
+            if (currentPage.includes('recursos')) initialMsg = "Estás en la sección de inscripción. ¿Ya estás listo/a? ¡El <b>formulario oficial está aquí abajo</b>! ¿En qué te ayudo?";
             simulateBotTyping(initialMsg, true);
         }
     }, 5000);
