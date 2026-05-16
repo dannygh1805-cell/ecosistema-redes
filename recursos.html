@@ -287,9 +287,6 @@
                             <a href="https://www.google.com/maps/search/?api=1&query=Av+Bolivariana+Francisco+Navarrete+Ambato+Ecuador" target="_blank" class="inline-block mt-6 px-6 py-2 border border-white/20 rounded-full text-xs font-bold text-white hover:bg-white hover:text-black transition-colors uppercase tracking-widest">
                                 <i class="fa-solid fa-map-location-dot mr-2"></i>Abrir en Maps
                             </a>
-                            <a href="https://wa.me/5930324089700?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Redes%20y%20Telecomunicaciones%20en%20la%20U.E.%20Guayaquil%20para%20las%20inscripciones%202026." target="_blank" class="inline-flex items-center gap-2 mt-3 px-6 py-2 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#20BD5C] transition-colors">
-                                <i class="fa-brands fa-whatsapp"></i>Contactar por WhatsApp
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -308,7 +305,7 @@
                 <div class="relative z-10">
                     <p class="text-gray-400 text-sm mb-8 max-w-2xl">¿Te interesa estudiar Redes y Telecomunicaciones? Llena esta matriz para registrar tu interés de forma anticipada. Usaremos estos datos exclusivamente para tener conocimiento de la acogida de la carrera.</p>
                     
-                    <form onsubmit="submitToWhatsApp(event)" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <form onsubmit="submitToEmail(event)" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="col-span-1 md:col-span-2">
                             <label class="block text-[10px] font-bold text-rt-cyan uppercase tracking-widest mb-2">Nombres y Apellidos Completos del Estudiante</label>
                             <input type="text" id="wa_nombre" required class="w-full bg-[#060d1a]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rt-cyan focus:ring-1 focus:ring-rt-cyan transition-all">
@@ -335,8 +332,8 @@
                         </div>
 
                         <div class="col-span-1 md:col-span-2 mt-4">
-                            <button type="submit" class="w-full bg-[#25D366] text-white font-black text-sm uppercase tracking-widest py-4 rounded-xl hover:bg-[#20BD5C] transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(37,211,102,0.3)]">
-                                Enviar Matriz por WhatsApp <i class="fa-brands fa-whatsapp text-lg ml-2"></i>
+                            <button type="submit" class="w-full bg-rt-cyan text-rt-navy font-black text-sm uppercase tracking-widest py-4 rounded-xl hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,245,255,0.3)]">
+                                Enviar Matriz por Correo <i class="fa-solid fa-envelope text-lg ml-2"></i>
                             </button>
                         </div>
                     </form>
@@ -360,7 +357,6 @@
                     <div class="flex gap-3 mt-5">
                         <a href="https://facebook.com" target="_blank" class="w-9 h-9 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-rt-cyan transition-all"><i class="fa-brands fa-facebook-f text-xs"></i></a>
                         <a href="https://instagram.com" target="_blank" class="w-9 h-9 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-rt-cyan transition-all"><i class="fa-brands fa-instagram text-xs"></i></a>
-                        <a href="https://wa.me/5930324089700" target="_blank" class="w-9 h-9 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-rt-cyan transition-all"><i class="fa-brands fa-whatsapp text-xs"></i></a>
                     </div>
                 </div>
                 <div>
@@ -437,8 +433,8 @@
             });
         }
 
-        // Enviar Matriz de Interés a WhatsApp
-        function submitToWhatsApp(event) {
+        // Enviar Matriz de Interés por Correo (Mailto)
+        function submitToEmail(event) {
             event.preventDefault(); // Evita recargar la página
 
             // Obtener los datos del formulario
@@ -448,23 +444,24 @@
             const telefono = document.getElementById('wa_telefono').value.trim();
             const correo = document.getElementById('wa_correo').value.trim();
 
-            // Construir el mensaje formateado
-            const mensaje = `Hola, me gustaría registrar mi interés anticipado en la carrera de *Redes y Telecomunicaciones (2026)*. A continuación envío mi matriz de datos:%0A%0A`
-                          + `👤 *Nombre:* ${nombre}%0A`
-                          + `🪪 *Cédula:* ${cedula}%0A`
-                          + `🏫 *Institución de Origen:* ${institucion}%0A`
-                          + `📱 *Teléfono:* ${telefono}%0A`
-                          + `✉️ *Correo:* ${correo}%0A%0A`
-                          + `Quedo atento/a a cualquier información adicional sobre el proceso de admisión.`;
+            // Configurar correo y asunto
+            const emailDestino = "pdgabilanes@gmail.com";
+            const subject = "Nueva Matriz de Interés - Redes y Telecomunicaciones";
 
-            // Número de destino
-            const waNumber = "5930324089700";
+            // Construir el mensaje de correo (texto plano básico que soporta mailto)
+            const body = `Hola, me gustaría registrar mi interés anticipado en la carrera de Redes y Telecomunicaciones (2026). A continuación envío mi matriz de datos:\n\n`
+                       + `Nombre: ${nombre}\n`
+                       + `Cédula: ${cedula}\n`
+                       + `Institución de Origen: ${institucion}\n`
+                       + `Teléfono / Contacto: ${telefono}\n`
+                       + `Correo de contacto: ${correo}\n\n`
+                       + `Quedo atento/a a cualquier información adicional sobre el proceso de admisión.`;
 
-            // Redirigir a WhatsApp
-            const waLink = `https://wa.me/${waNumber}?text=${mensaje}`;
-            window.open(waLink, '_blank');
+            // Ejecutar el mailto
+            const mailtoLink = `mailto:${emailDestino}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
 
-            // Limpiar formulario opcionalmente
+            // Limpiar formulario
             event.target.reset();
         }
     </script>
